@@ -1,4 +1,16 @@
-<?php include "header.php"; ?><h2>Item Search</h2>
+<?php include "header.php"; ?>
+
+<h2>Item Search</h2>
+
+<div style="float:right;">
+	To View your cart, click here.
+	<form method="post">
+      <label for="itemCart">Cart</label>
+      <input type="submit" name="submit" value="Cart">
+    </form>
+</div>
+
+
 
     <form method="post">
       <label for="itemName">Item Name</label>
