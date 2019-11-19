@@ -19,7 +19,7 @@ if(isset($_POST["add"])){
                die("Connection failed: " . $conn->connect_error);
 	} else{
 	    $sql = "INSERT INTO Promotions (Coupon, Discount) 
-				VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."')";
+				VALUES ('".$_POST["coupon"]."', '".$_POST["discount"]."')";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
                echo "Successfully inserted product information!";
