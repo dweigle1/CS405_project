@@ -48,7 +48,7 @@ if(isset($_POST["delete"])){
 }
 ?>
 
-<h1>Add Inventory</h1>
+<h1>Edit Promotions</h1>
 
 <style>
 div {
