@@ -5,6 +5,8 @@
     	<input type="text" name="firstname" id="firstname">
     	<label for="lastname">Last Name</label>
 	<input type="text" name="lastname" id="lastname">
+	<label for="UserName"> UserName </label>
+        <input type="text" name="UserName" id="UserName">
 	<label for="password">Password </label>
 	<input type="password" name="password" id="password">
 	<input type="submit" name="submit" value="Submit">
@@ -29,15 +31,15 @@ if(isset($_POST["submit"])){
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $result = mysqli_query($conn,"SELECT * FROM User");
-	    $row = mysqli_num_rows($result);
-	    $sql = "INSERT INTO User (Uid, FirstName, LastName, Password) VALUES ('".$row."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."')";
+	   
+	    $sql = "INSERT INTO Users (UserName, FirstName, LastName, Password, Role) VALUES ('".$_POST["UserName"]."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."', 'Customer')";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
-               echo "New record created successfully, Your User ID is: $row";
+               echo "New record created successfully, Your UserName is: ".$_POST["UserName"]."";
             } else {
-               echo "Error: " . $sql . "" . mysqli_error($conn);
-            }
+               echo "Error: UserName Already exists! Try again ";
+	    }
+		
             $conn->close();
        	        
 	    }
