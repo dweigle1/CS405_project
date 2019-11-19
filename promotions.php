@@ -22,7 +22,23 @@ if(isset($_POST["add"])){
 				VALUES ('".$_POST["coupon"]."', '".$_POST["discount"]."')";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
-               echo "Successfully inserted product information!";
+               echo "Successfully inserted promotion!";
+            } else {
+               echo "Error: " . $sql . "" . mysqli_error($conn);
+            }
+            $conn->close();
+       	        
+	    }
+}
+if(isset($_POST["add"])){
+	$conn = new mysqli($host, $username, $password, $dbname);
+	if ($conn->connect_error) {
+               die("Connection failed: " . $conn->connect_error);
+	} else{
+	    $sql = "DELETE FROM Promotions WHERE Coupon='".$_POST["coupon"]."';";
+	    mysqli_free_result($result); 
+	    if (mysqli_query($conn, $sql)) {
+               echo "Successfully ended promotion!";
             } else {
                echo "Error: " . $sql . "" . mysqli_error($conn);
             }
@@ -57,6 +73,7 @@ div label {
 	
 
 	<input type="submit" name="add" value="Add Promotion">
+	<input type="submit" name="delete" value="Delete Promotion">
 </form>
 
 
