@@ -14,7 +14,7 @@
     <a href="itemSearch.php"><strong>Search</strong></a> - Search for an item
   </li>
 	<li>
-    <a href="Promotions.php"><strong>Promotions</strong></a> - View inventory and edit promotions
+    <a href="promotions.php"><strong>Promotions</strong></a> - View inventory and edit promotions
   </li>
 	</li>
 	<li>
