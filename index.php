@@ -7,6 +7,9 @@
   <li>
     <a href="login.php"><strong>Login</strong></a> - Login to the system
   </li>
+  <li>
+    <a href="staff.php"><strong>Staff</strong></a> - Staff Forms
+  </li>
 </ul>
 
 <?php include "footer.php"; ?>
