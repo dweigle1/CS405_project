@@ -51,8 +51,8 @@ div label {
 	</div>
 	
 	<div>
-		<label for="quantity">Discount (between 0 and 1... unless you live dangerously</label>
-		<input type="number" name="discount" id="discount">
+		<label for="quantity">Discount (between 0 and 1)</label>
+		<input type="number" step="0.01" min="0" max="1" name="discount" id="discount">
 	</div>
 	
 
