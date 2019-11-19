@@ -7,6 +7,9 @@
   <li>
     <a href="login.php"><strong>Login</strong></a> - Login to the system
   </li>
+  <li>
+    <a href="itemSearch.php"><strong>Search</strong></a> - Search for an item
+  </li>
 </ul>
 
 <?php include "footer.php"; ?>
