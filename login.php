@@ -1,7 +1,7 @@
 <?php include "header.php"; ?><h2>Log in</h2>
 
     <form method="post">
-    	<label for="userID">User id</label>
+    	<label for="userID">User Name</label>
     	<input type="text" name="userID" id="userID">
     	<label for="password">Password</label>
     	<input type="password" name="password" id="password">
@@ -32,7 +32,7 @@ if(isset($_POST["Login"])){
 		
 		$name = $_POST["userID"];
 		$password = $_POST["password"];
-		$query = "SELECT Uid, Password FROM User WHERE Uid = '".$name."' AND  Password = '".$password."'";	
+		$query = "SELECT Uid, Password FROM Users WHERE Uid = '".$name."' AND  Password = '".$password."'";	
 		//echo "$query";	
 		
 		$result = mysqli_query($conn, $query);		
