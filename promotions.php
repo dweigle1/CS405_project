@@ -47,12 +47,12 @@ div label {
 <form method="post">
 	<div>
 		<label for="pid">Coupon Code</label>
-		<input type="text" name="Coupon" id="coupon">
+		<input type="text" name="coupon" id="coupon">
 	</div>
 	
 	<div>
 		<label for="quantity">Discount (between 0 and 1... unless you live dangerously</label>
-		<input type="float" name="Discount" id="discount">
+		<input type="number" name="discount" id="discount">
 	</div>
 	
 
