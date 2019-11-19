@@ -12,10 +12,17 @@
 
     <?php include "footer.php"; ?>
 <?php
-$host = "localhost";
-$username = "root";
+$host = "158.69.195.142";
+$username = "test";
 $password = "password";
 $dbname = "TOYZ";
+
+$ip_server = $_SERVER['SERVER_ADDR']; 
+
+if($ip_server == "158.69.195.142")
+{
+	$username = "root";
+}
 
 if(isset($_POST["Login"])){
 	$conn = new mysqli($host, $username, $password, $dbname);

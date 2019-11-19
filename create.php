@@ -12,11 +12,17 @@
 
     <a href="index.php">Back to home</a>
 <?php
-$host = "localhost";
-$username = "root";
+$host = "158.69.195.142";
+$username = "test";
 $password = "password";
 $dbname = "TOYZ";
 
+$ip_server = $_SERVER['SERVER_ADDR']; 
+
+if($ip_server == "158.69.195.142")
+{
+	$username = "root";
+}
 
 if(isset($_POST["submit"])){
 	$conn = new mysqli($host, $username, $password, $dbname);
