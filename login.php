@@ -19,7 +19,7 @@ $dbname = "TOYZ";
 
 $ip_server = $_SERVER['SERVER_ADDR']; 
 
-if($ip_server = "158.69.195.142")
+if($ip_server == "158.69.195.142")
 {
 	$username = "root";
 }
