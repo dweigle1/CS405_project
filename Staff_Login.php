@@ -1,4 +1,4 @@
-<?php include "header.php"; ?><h2>Customer Log in</h2>
+<?php include "header.php"; ?><h2>Staff Log in</h2>
 
     <form method="post">
     	<label for="userID">User Name</label>
@@ -32,7 +32,7 @@ if(isset($_POST["Login"])){
 		
 		$name = $_POST["userID"];
 		$password = $_POST["password"];
-		$query = "SELECT UserName, Password FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."' AND ROLE = 'Customer'";	
+		$query = "SELECT UserName, Password FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."' AND (Role = 'Staff' OR Role = 'Manager')";	
 		//echo "$query";	
 		
 		$result = mysqli_query($conn, $query);		

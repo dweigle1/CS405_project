@@ -1,4 +1,4 @@
-<?php include "header.php"; ?><h2>Add a user</h2>
+<?php include "header.php"; ?><h2>Add a new staff member</h2>
 
     <form method="post">
     	<label for="firstname">First Name</label>
@@ -32,7 +32,7 @@ if(isset($_POST["submit"])){
                die("Connection failed: " . $conn->connect_error);
 	} else{
 	   
-	    $sql = "INSERT INTO Users (UserName, FirstName, LastName, Password, Role) VALUES ('".$_POST["UserName"]."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."', 'Customer')";
+	    $sql = "INSERT INTO Users (UserName, FirstName, LastName, Password, Role) VALUES ('".$_POST["UserName"]."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."', 'Staff')";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
                echo "New record created successfully, Your UserName is: ".$_POST["UserName"]."";

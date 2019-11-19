@@ -14,7 +14,7 @@
     <form action="gatherItems.php" method="post">
       <label for="itemName">Item Name</label>
       <input type="text" name="itemName" id="itemName">
-      <input type="submit" name="submit" value="Submit">
+      <input type="submit" name="Submit" value="Submit">
     </form>
 
     <a href="index.php">Back to home</a>
