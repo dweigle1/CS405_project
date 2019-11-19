@@ -2,17 +2,16 @@
 
 <h2>Item Search</h2>
 
-<div style="float:right;">
+<div style="float:right; margin-right: 30px">
 	To View your cart, click here.
-	<form method="post">
-      <label for="itemCart">Cart</label>
+	<form action="gatherCart.php" method="post">
       <input type="submit" name="submit" value="Cart">
     </form>
 </div>
 
 
 
-    <form method="post">
+    <form action="gatherItems.php" method="post">
       <label for="itemName">Item Name</label>
       <input type="text" name="itemName" id="itemName">
       <input type="submit" name="submit" value="Submit">
