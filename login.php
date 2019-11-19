@@ -12,8 +12,8 @@
 
     <?php include "footer.php"; ?>
 <?php
-$host = "localhost";
-$username = "root";
+$host = "158.69.195.142";
+$username = "test";
 $password = "password";
 $dbname = "TOYZ";
 

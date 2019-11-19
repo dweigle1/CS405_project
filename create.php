@@ -12,8 +12,8 @@
 
     <a href="index.php">Back to home</a>
 <?php
-$host = "localhost";
-$username = "root";
+$host = "158.69.195.142";
+$username = "test";
 $password = "password";
 $dbname = "TOYZ";
 
