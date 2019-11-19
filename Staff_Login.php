@@ -32,7 +32,7 @@ if(isset($_POST["Login"])){
 		
 		$name = $_POST["userID"];
 		$password = $_POST["password"];
-		$query = "SELECT UserName, Password FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."' AND (Role = 'Staff' OR Role = 'Manager'";	
+		$query = "SELECT UserName, Password FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."' AND (Role = 'Staff' OR Role = 'Manager')";	
 		//echo "$query";	
 		
 		$result = mysqli_query($conn, $query);		
