@@ -1,14 +1,28 @@
-<?php include "header.php"; ?><h2>Customer Log in</h2>
+<?php include "header.php"; ?>
+	
+	<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://caro256.cs.uky.edu/CS405_project/images/logo.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
     <form method="post">
-    	<label for="userID">User Name</label>
-    	<input type="text" name="userID" id="userID">
-    	<label for="password">Password</label>
-    	<input type="password" name="password" id="password">
-    	<input type="submit" name="Login" value="log in">
+      <input type="text" id="userID" class="fadeIn second" name="userID" placeholder="username">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In" name="Login">
     </form>
 
-    <a href="index.php">Back to home</a>
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="http://caro256.cs.uky.edu/CS405_project/create.php">Create Account</a>
+    </div>
+
+  </div>
+</div>
 
     <?php include "footer.php"; ?>
 <?php
@@ -32,19 +46,22 @@ if(isset($_POST["Login"])){
 		
 		$name = $_POST["userID"];
 		$password = $_POST["password"];
-		$query = "SELECT UserName, Password FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."' AND ROLE = 'Customer'";	
-		//echo "$query";	
+		$query = "SELECT UserName, Role FROM Users WHERE UserName = '".$name."' AND  Password = '".$password."'";	
 		
 		$result = mysqli_query($conn, $query);		
-		$number = mysqli_num_rows($result); 
+		$number = mysqli_num_rows($result);
+		$row = mysqli_fetch_row($result);
+		
+		$conn->close();
 		if($number > 0 ){
-	       	   echo "Logged in!";	
+			session_start();
+			$_SESSION['login_user'] = $row[0];
+			$_SESSION['login_role'] = $row[1];
+	       	header("Location: http://caro256.cs.uky.edu/CS405_project/"); 
+			exit();
 	   	} else {
-		   echo "The username or password are incorrect!";
-	    
+		   echo "The username or password you entered was incorrect!";
 		}
-            $conn->close();
-
-            }
+    }
 }
 ?>
