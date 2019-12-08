@@ -7,7 +7,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="../CS405_project/images/logo.png" id="icon" alt="User Icon" />
+      <img src="./images/logo.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
@@ -19,7 +19,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="../CS405_project/create.php">Create Account</a>
+      <a class="underlineHover" href="./create.php">Create Account</a>
     </div>
 
   </div>
