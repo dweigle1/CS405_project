@@ -18,7 +18,7 @@ if(isset($_POST["list"])){
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $sql = "SELECT ProdName, Price, Category FROM $dbname WHERE Keyword LIKE %'".$_POST["list"]."'% OR ProdName LIKE %'".$_POST["list"]."'";
+	    $sql = "SELECT [Price], [Category], [ProdName] FROM $dbname WHERE [ProdName] Like '%.$_POST("list"),%' OR Keyword Like '%.$_POST("list"),%'";
       mysqli_free_result($result); 
       
       $result = mysqli_query($conn, $sql);
@@ -61,7 +61,7 @@ if(isset($_POST["list"])){
     </form>
 </div>
 
-<form method="post">
+<form action="gatherItems.php" method="post">
   <label for="itemName">Item Name</label>
   <input type="text" name="itemName" id="itemName">
   <input type="submit" name="list" value="Submit">
