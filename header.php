@@ -56,7 +56,7 @@ else
 	</form>
 	<?php 
 	if(isset($_SESSION["login_user"])){
-		echo '<a class="navbar-brand" href="#"><img src="../CS405_project/images/user.png" width="40" height="40" alt=""></a>';
+		echo '<a class="navbar-brand" href="#"><img src="./images/user.png" width="40" height="40" alt=""></a>';
 		echo '<span class="navbar-text" style="margin-bottom:5px;">'; 
 		echo $_SESSION["login_user"];
 		echo '</span>';
