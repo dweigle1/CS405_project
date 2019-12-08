@@ -1,5 +1,4 @@
 <?php include "header.php"; ?>
-<link rel="stylesheet" href="css/login.css" />
 	
 	<div class="wrapper fadeInDown">
   <div id="formContent">
@@ -14,7 +13,7 @@
     <form method="post">
       <input type="text" id="userID" class="fadeIn second" name="userID" placeholder="username">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-      <input type="submit" class="fadeIn fourth login-input" value="Log In" name="Login">
+      <input type="submit" class="fadeIn fourth" value="Log In" name="Login">
     </form>
 
     <!-- Remind Passowrd -->

@@ -2,6 +2,20 @@
 
 <?php
 session_start();
+
+if (!(isset($_SESSION['login_user']) && $_SESSION['login_user'] != '') && basename($_SERVER['PHP_SELF']) != 'login.php') {
+	header ("Location: login.php");
+}
+else
+{
+    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction']))
+    {
+        session_start();
+		session_destroy();
+		header ("Location: login.php");
+    }
+}
+
 ?>
 <html lang="en">
   <head>
@@ -17,7 +31,7 @@ session_start();
   </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-  <a class="navbar-brand" href="#">ToyzRus</a>
+  <a class="navbar-brand" href="./">ToyzRus</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

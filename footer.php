@@ -9,9 +9,11 @@
 </head>
 
 <body>
-<nav class="navbar fixed-bottom navbar-dark bg-dark footer-nav">
-  <a class="navbar-brand" href="#"></a>
-</nav>
+	<nav class="navbar fixed-bottom navbar-dark bg-dark footer-nav">
+		<form action="#" method="post">
+			<input type="submit" name="someAction" value="Logout" class="logout"/>
+		</form>
+	</nav>
 </body>
 
 </html>

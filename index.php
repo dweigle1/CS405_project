@@ -2,16 +2,7 @@
 
 <ul>
   <li>
-    <a href="create.php"><strong>Create Customer Account</strong></a> - Create a customer account
-  </li>
-  <li>
-    <a href="login.php"><strong>Customer Login</strong></a> - Login as a customer
-  </li>
-  <li>
     <a href="staff.php"><strong>Staff</strong></a> - Staff Forms
-  </li>
-  <li>
-    <a href="itemSearch.php"><strong>Search</strong></a> - Search for an item
   </li>
 	<li>
     <a href="promotions.php"><strong>Promotions</strong></a> - View inventory and edit promotions
