@@ -1,16 +1,32 @@
-<?php include "header.php"; ?><h2>Add a user</h2>
+<?php include "header.php"; ?>
+	
+	<link rel="stylesheet" href="css/login.css" />
+	
+	<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../CS405_project/images/logo.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
     <form method="post">
-    	<label for="firstname">First Name</label>
-    	<input type="text" name="firstname" id="firstname">
-    	<label for="lastname">Last Name</label>
-	<input type="text" name="lastname" id="lastname">
-	<label for="UserName"> UserName </label>
-        <input type="text" name="UserName" id="UserName">
-	<label for="password">Password </label>
-	<input type="password" name="password" id="password">
-	<input type="submit" name="submit" value="Submit">
+      <input type="text" id="UserName" class="fadeIn second" name="UserName" placeholder="username">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+	  <input type="text" id="firstname" class="fadeIn second" name="firstname" placeholder="first name">
+	  <input type="text" id="lastname" class="fadeIn second" name="lastname" placeholder="last name">
+	  <select name="role">
+		  <option value="Customer">Customer</option>
+		  <option value="Staff">Staff</option>
+		  <option value="Manager">Manager</option>
+		</select> 
+      <input type="submit" class="fadeIn fourth login-input" value="Create Account" name="submit">
     </form>
+
+  </div>
+</div>
 
     <a href="index.php">Back to home</a>
 <?php
@@ -32,17 +48,21 @@ if(isset($_POST["submit"])){
                die("Connection failed: " . $conn->connect_error);
 	} else{
 	   
-	    $sql = "INSERT INTO Users (UserName, FirstName, LastName, Password, Role) VALUES ('".$_POST["UserName"]."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."', 'Customer')";
-	    mysqli_free_result($result); 
-	    if (mysqli_query($conn, $sql)) {
-               echo "New record created successfully, Your UserName is: ".$_POST["UserName"]."";
-            } else {
-               echo "Error: UserName Already exists! Try again ";
-	    }
+	    $query = "INSERT INTO Users (UserName, FirstName, LastName, Password, Role) VALUES ('".$_POST["UserName"]."', '".$_POST["firstname"]."', '".$_POST["lastname"]."', '".$_POST["password"]."', '".$_POST["role"]."')";
+	    $result = mysqli_query($conn, $query);
 		
-            $conn->close();
-       	        
+		$conn->close();
+	    if ($result) {
+            session_start();
+			$_SESSION['login_user'] = $_POST["UserName"];
+			$_SESSION['login_role'] = 'Customer';
+	       	header("Location: ../CS405_project/"); 
+			exit();
+        } 
+		else {
+            echo "Error: UserName Already exists! Try again ";
 	    }
+	}
 }
 ?>
 <?php include "footer.php";?>

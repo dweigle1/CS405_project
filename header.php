@@ -3,7 +3,8 @@
 <?php
 session_start();
 
-if (!(isset($_SESSION['login_user']) && $_SESSION['login_user'] != '') && basename($_SERVER['PHP_SELF']) != 'login.php') {
+if (!(isset($_SESSION['login_user']) && $_SESSION['login_user'] != '') && basename($_SERVER['PHP_SELF']) != 'login.php'
+    && basename($_SERVER['PHP_SELF']) != 'create.php') {
 	header ("Location: login.php");
 }
 else
@@ -55,8 +56,8 @@ else
 	</form>
 	<?php 
 	if(isset($_SESSION["login_user"])){
-		echo '<a class="navbar-brand" href="#"><img src="http://caro256.cs.uky.edu/CS405_project/images/user.png" width="40" height="40" alt=""></a>';
-		echo '<span class="navbar-text">'; 
+		echo '<a class="navbar-brand" href="#"><img src="../CS405_project/images/user.png" width="40" height="40" alt=""></a>';
+		echo '<span class="navbar-text" style="margin-bottom:5px;">'; 
 		echo $_SESSION["login_user"];
 		echo '</span>';
 	}

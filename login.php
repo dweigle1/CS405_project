@@ -7,7 +7,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="http://caro256.cs.uky.edu/CS405_project/images/logo.png" id="icon" alt="User Icon" />
+      <img src="../CS405_project/images/logo.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
@@ -19,7 +19,7 @@
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="http://caro256.cs.uky.edu/CS405_project/create.php">Create Account</a>
+      <a class="underlineHover" href="../CS405_project/create.php">Create Account</a>
     </div>
 
   </div>
@@ -58,7 +58,7 @@ if(isset($_POST["Login"])){
 			session_start();
 			$_SESSION['login_user'] = $row[0];
 			$_SESSION['login_role'] = $row[1];
-	       	header("Location: http://caro256.cs.uky.edu/CS405_project/"); 
+	       	header("Location: ../CS405_project/"); 
 			exit();
 	   	} else {
 		   echo "The username or password you entered was incorrect!";

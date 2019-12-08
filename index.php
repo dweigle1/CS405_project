@@ -9,12 +9,6 @@
   </li>
 	</li>
 	<li>
-    <a href="Staff_Login.php"><strong>Staff Login</strong></a> - Log in as staff or manager
-  </li>
-	<li>
-    <a href="create_Staff.php"><strong>Create a Staff Login</strong></a>
-  </li>
-	<li>
     <a href="Stats.php"><strong>Stats</strong></a> - View sales statistics
   </li>
 </ul>
