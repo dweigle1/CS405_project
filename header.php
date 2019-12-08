@@ -32,7 +32,10 @@ else
   </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark main-nav">
-  <a class="navbar-brand" href="./">ToyzRus</a>
+  <a class="navbar-brand" href="./">
+  <img src="./images/logo.png" width="40" height="40" alt="">
+  ToyzRus
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -42,12 +45,21 @@ else
       <li class="nav-item active">
         <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
+	  
+	  <?php 
+		if(isset($_SESSION["login_user"])){
+			if($_SESSION["login_role"] == "Manager")
+			{
+				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./promotions.php">Promotions</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./Stats.php">Sales Statistics</a></li>';
+			}
+			else if($_SESSION["login_role"] == "Staff")
+			{
+				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
+			}
+		}
+	?>
     </ul>
 	
     <form class="form-inline">
@@ -57,7 +69,7 @@ else
 	<?php 
 	if(isset($_SESSION["login_user"])){
 		echo '<a class="navbar-brand" href="#"><img src="./images/user.png" width="40" height="40" alt=""></a>';
-		echo '<span class="navbar-text" style="margin-bottom:5px;">'; 
+		echo '<span class="navbar-text" style="margin-bottom:5px; margin-left:-15px;">'; 
 		echo $_SESSION["login_user"];
 		echo '</span>';
 	}

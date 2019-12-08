@@ -55,7 +55,7 @@ if(isset($_POST["submit"])){
 	    if ($result) {
             session_start();
 			$_SESSION['login_user'] = $_POST["UserName"];
-			$_SESSION['login_role'] = 'Customer';
+			$_SESSION['login_role'] = $_POST["role"];
 	       	header("Location: ./index.php"); 
 			exit();
         } 

@@ -15,3 +15,8 @@ input[type="submit"].logout {
   color: #007bff;
   cursor: pointer;
 }
+
+.btn-outline-success {
+	color: #007bff;
+	border-color: #007bff;
+}
