@@ -1,0 +1,17 @@
+.main-nav {
+	margin-bottom: 15px;
+}
+
+.footer-nav {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+input[type="submit"].logout {
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
