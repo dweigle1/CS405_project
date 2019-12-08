@@ -1,8 +1,5 @@
 <?php include "header.php"; ?>
 
-
-Your item is <?php echo $_POST["itemName"]; ?><br>
-
 <?php
 $host = "158.69.195.142";
 $username = "test";
@@ -21,8 +18,8 @@ if(isset($_POST["itemName"])){
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $sql = "SELECT [Price], [Category], [ProdName] FROM $dbname WHERE [ProdName] Like '%.$_POST("list"),%' OR Keyword Like '%.$_POST("list"),%'";
-      //mysqli_free_result($result); 
+	    $sql = "SELECT Price, Category, ProdName FROM Products WHERE ProdName Like '%.$_POST("list"),%' OR Keyword Like '%.$_POST("list"),%'";
+      	mysqli_free_result($result); 
       
       $result = mysqli_query($conn, $sql);
 
@@ -54,4 +51,7 @@ if(isset($_POST["itemName"])){
 	    }
 }
 ?>
+
+Your item is <?php echo $_POST["itemName"]; ?><br>
+
 <?php include "footer.php";?>
