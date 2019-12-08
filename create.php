@@ -8,7 +8,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="../CS405_project/images/logo.png" id="icon" alt="User Icon" />
+      <img src="../images/logo.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
@@ -56,7 +56,7 @@ if(isset($_POST["submit"])){
             session_start();
 			$_SESSION['login_user'] = $_POST["UserName"];
 			$_SESSION['login_role'] = 'Customer';
-	       	header("Location: ../CS405_project/"); 
+	       	header("Location: ./index.php"); 
 			exit();
         } 
 		else {

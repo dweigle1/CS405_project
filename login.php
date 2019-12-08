@@ -58,7 +58,7 @@ if(isset($_POST["Login"])){
 			session_start();
 			$_SESSION['login_user'] = $row[0];
 			$_SESSION['login_role'] = $row[1];
-	       	header("Location: ../CS405_project/"); 
+	       	header("Location: ./index.php"); 
 			exit();
 	   	} else {
 		   echo "The username or password you entered was incorrect!";
