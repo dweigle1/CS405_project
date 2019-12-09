@@ -55,7 +55,10 @@ if(isset($_POST["itemName"])){
     }
 }
 ?>
-
-Your item is <?php echo $_POST["itemName"]; ?><br>
+<?php
+if(isset($_POST["itemName"])){
+     echo $_POST["itemName"];
+}
+?>
 
 <?php include "footer.php";?>
