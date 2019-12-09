@@ -24,7 +24,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 	} else{
 	    
 		$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
- from Products LEFT JOIN (Orders LEFT JOIN OrderProducts 
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID;";
 		$result = mysqli_query($conn, $sql);
