@@ -60,6 +60,9 @@ else
 			}
 		}
 	?>
+		<li class="nav-item active">
+        <a class="nav-link" href="gatherCart.php">Cart <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
 	
     <form action="gatherItems.php" method="post" class="form-inline">
