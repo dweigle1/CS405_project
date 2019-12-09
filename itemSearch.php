@@ -10,8 +10,8 @@
 </div>
 
 <form action="gatherItems.php" method="post">
-  <label for="itemName">Item Name</label>
-  <input type="text" name="itemName" id="itemName">
+  <label for="Search">Item Name</label>
+  <input type="text" name="Search" id="Search">
   <input type="submit" name="list" value="Submit">
 </form>
 
