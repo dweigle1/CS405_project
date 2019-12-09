@@ -13,14 +13,14 @@ if($ip_server == "158.69.195.142")
 	$username = "root";
 }
 
-if(isset($_POST["itemName"])){
+if(isset($_POST["Search"])){
 	$conn = new mysqli($host, $username, $password, $dbname);
         if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
 		
-		$itemName = $_POST["itemName"];
-		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '%".$itemName."%'' OR Keyword LIKE '%".$itemName."%' ";	
+		$Search = $_POST["Search"];
+		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '%".$Search."%'' OR Keyword LIKE '%".$Search."%' ";	
 		
 		$result = mysqli_query($conn, $query);		
 		$number = mysqli_num_rows($result);
@@ -55,10 +55,6 @@ if(isset($_POST["itemName"])){
     }
 }
 ?>
-<?php
-if(isset($_POST["itemName"])){
-     echo $_POST["itemName"];
-}
-?>
+
 
 <?php include "footer.php";?>
