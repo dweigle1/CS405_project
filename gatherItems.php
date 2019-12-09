@@ -15,40 +15,44 @@ if($ip_server == "158.69.195.142")
 
 if(isset($_POST["itemName"])){
 	$conn = new mysqli($host, $username, $password, $dbname);
-	if ($conn->connect_error) {
+        if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $sql = "SELECT Price, Category, ProdName FROM Products WHERE ProdName Like '%.$_POST("list"),%' OR Keyword Like '%.$_POST("list"),%'";
-      	mysqli_free_result($result); 
-      
-      $result = mysqli_query($conn, $sql);
+		
+		$itemName = $_POST["itemName"];
+		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '%".$itemName."%'' OR Keyword LIKE '%".$itemName."%' ";	
+		
+		$result = mysqli_query($conn, $query);		
+		$number = mysqli_num_rows($result);
+		$row = mysqli_fetch_row($result);
+        
+        $result = mysqli_query($conn, $sql);
+        echo "<br>";
+        echo "<table border='1' style='width:100%'>";
+        echo "<tr>";
 
-      echo "<br>";
-      echo "<table border='1' style='width:100%'>";
-      echo "<tr>";
+        echo "<th>PID</th>";
+        echo "<th>Quantity</th>";
+        echo "<th>Price</th>";
+        echo "<th>Category</th>";
+        echo "<th>Product Name</th>";
+        echo "<th>Keyword</th>";
 
-      echo "<th>Product Name</th>";
-      echo "<th>Price</th>";
-      echo "<th>Category</th>";
+        echo "</tr>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            foreach ($row as $field => $value) { 
+                echo "<td>" . $value . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
 
-      echo "</tr>";
-      while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
-          foreach ($row as $field => $value) { 
-              echo "<td>" . $value . "</td>";
-          }
-          echo "</tr>";
-      }
-      echo "</table>";
 
-	    // if (mysqli_query($conn, $sql)) {
-      //          echo "Successfully pulled product information!";
-      //       } else {
-      //          echo "Error: " . $sql . "" . mysqli_error($conn);
-      //       }
-      //       $conn->close();
-       	        
-	    }
+
+		$conn->close();
+		
+    }
 }
 ?>
 
