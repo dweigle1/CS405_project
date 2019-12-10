@@ -22,7 +22,7 @@ if(isset($_POST["Search"])){
 		$Search = $_POST["Search"];
         $sql = "SELECT Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
 		
-		$result = mysqli_query($conn, $query);
+		$result = mysqli_query($conn, $sql);
         $conn->close();
 
         echo "<br>";
