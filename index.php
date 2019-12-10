@@ -17,7 +17,7 @@ $sql = "SELECT ProdName, Price FROM Products ORDER BY ProdName";
 $result = mysqli_query($conn, $sql);
 $conn->close();
 
-echo Total List of Products;
+//echo Total List of Products;
 echo "<br>";
 echo "<table border='1' style='width:100%'>";
 echo "<tr>";
