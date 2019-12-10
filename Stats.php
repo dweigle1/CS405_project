@@ -77,8 +77,9 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		$result = mysqli_query($conn, $sql);
 		$row = null;
 		$chart_data="";
+		echo $result;
 		while ($row = mysqli_fetch_assoc($result)) { 
- 
+ 			echo $row;
             array_push($productname, $row["Products.ProdName"]);
             array_push($sales, $row["OrderProducts.Quantity"]);
         }
