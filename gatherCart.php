@@ -1,6 +1,18 @@
 <?php include "header.php"; ?>
 
 <?php
+$host = "158.69.195.142";
+$username = "test";
+$password = "password";
+$dbname = "TOYZ";
+
+$ip_server = $_SERVER['SERVER_ADDR']; 
+
+if($ip_server == "158.69.195.142")
+{
+	$username = "root";
+}
+
 
 
 if(isset($_SESSION["login_user"])){
@@ -12,7 +24,6 @@ if(isset($_SESSION["login_user"])){
 		
 		$login = $_SESSION["login_user"];
 		$sql = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC";	
-		
 		$result = mysqli_query($conn, $sql);
         $conn->close();
 
@@ -27,7 +38,6 @@ if(isset($_SESSION["login_user"])){
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "Hello";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
             }
