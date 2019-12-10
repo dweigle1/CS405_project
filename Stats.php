@@ -34,21 +34,21 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-	
+		$SELECTEDORDER = 'Week';
 }
 		if(isset($_POST["Month"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
-	
+	$SELECTEDORDER = 'Month';	
 }
 		if(isset($_POST["Year"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
-	
+	$SELECTEDORDER = 'Year';
 }
 		
 		$result = mysqli_query($conn, $sql);
@@ -66,7 +66,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
     	echo "<tr>";
     	foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
-			$dept[]= ($field == 'timeOrdered') ? $value : NULL;
+			$dept[]= $value;
 		}
     	echo "</tr>";
 		}
@@ -90,7 +90,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	exportEnabled: true,
 	theme: "light1", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Simple Column Chart with Index Labels"
+		text: "Sales for the past " <?php $SELECTEDORDER; ?>
 	},
 	data: [{
 		type: "column", //change type to bar, line, area, pie, etc
