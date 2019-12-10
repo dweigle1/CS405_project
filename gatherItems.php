@@ -20,11 +20,12 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '"%.$Search.%"' OR Keyword LIKE '"%.$Search.%"'";	
+		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '%".$Search."%' OR Keyword LIKE '"%.$Search.%"'";	
 		
 		$result = mysqli_query($conn, $query);		
 		$number = mysqli_num_rows($result);
-		$row = mysqli_fetch_row($result);
+          $row = mysqli_fetch_row($result);
+          $conn->close();
         
         $result = mysqli_query($conn, $sql);
         echo "<br>";
@@ -50,7 +51,7 @@ if(isset($_POST["Search"])){
 
 
 
-		$conn->close();
+		
 		
     }
 }
