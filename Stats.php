@@ -34,6 +34,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
+			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
 		$SELECTEDORDER = 'Week';
 }
 		if(isset($_POST["Month"])){
@@ -41,6 +42,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
+			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
 	$SELECTEDORDER = 'Month';	
 }
 		if(isset($_POST["Year"])){
@@ -48,6 +50,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
+			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
 	$SELECTEDORDER = 'Year';
 }
 		
@@ -60,13 +63,13 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		echo "<th>timeOrdered</th>";
 		echo "<th>ProdName</th>";
 		echo "<th>Quantity</th>";
-		$dept = array();
+		
 		echo "</tr>";
 		while ($row = mysqli_fetch_assoc($result)) {
     	echo "<tr>";
     	foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
-			$dept[]= $value;
+			
 		}
     	echo "</tr>";
 		}
@@ -74,7 +77,12 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
        	        
 	    }
-
+$result2 = mysqli_query($conn, $sql);
+$dept = array();
+    while($row2=mysql_fetch_array($result2))
+    {
+      $dept[]=$row['timeOrdered'];
+     }
 
 
 	
