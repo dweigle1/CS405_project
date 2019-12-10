@@ -15,22 +15,22 @@ if($ip_server == "158.69.195.142")
 
 $sql = "SELECT ProdName, Price FROM Products";
 $result = mysqli_query($conn, $sql);
-// echo "<br>";
-// echo "<table border='1' style='width:100%'>";
-// echo "<tr>";
+echo "<br>";
+echo "<table border='1' style='width:100%'>";
+echo "<tr>";
 
-// echo "<th>Product Name</th>";
-// echo "<th>Price</th>";
+echo "<th>Product Name</th>";
+echo "<th>Price</th>";
 
-// echo "</tr>";
-// while ($row = mysqli_fetch_assoc($result)) {
-//     echo "<tr>";
-//     foreach ($row as $field => $value) { 
-//         echo "<td>" . $value . "</td>";
-//     }
-//     echo "</tr>";
-// }
-// echo "</table>";
+echo "</tr>";
+while ($row = mysqli_fetch_assoc($result)) {
+    echo "<tr>";
+    foreach ($row as $field => $value) { 
+        echo "<td>" . $value . "</td>";
+    }
+    echo "</tr>";
+}
+echo "</table>";
 ?>
 
 <?php include "footer.php"; ?>
