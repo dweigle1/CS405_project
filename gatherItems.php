@@ -29,10 +29,5 @@ if(isset($_POST["Search"])){
     }
 }
 ?>
-<?php
-if(isset($_POST["Search"])){
-     echo $_POST["Search"];
-}
-?>
 
 <?php include "footer.php";?>
