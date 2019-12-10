@@ -25,6 +25,7 @@ echo "<th>Price</th>";
 echo "</tr>";
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
+    echo Hello;
     foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
     }
