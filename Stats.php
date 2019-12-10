@@ -84,7 +84,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 // 			echo $row;
 //            array_push($productname, $row["Products.ProdName"]);
 //            array_push($sales, $row["OrderProducts.Quantity"]);
-        }
+        //}
 
 	$productname = 'poop';
 	$sales = 2;
