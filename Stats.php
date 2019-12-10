@@ -33,9 +33,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-		$SELECTEDORDER = 'Week';
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
 	
 }
 		if(isset($_POST["Month"])){
@@ -43,9 +41,6 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-	$SELECTEDORDER = 'Month';
-			
 	
 }
 		if(isset($_POST["Year"])){
@@ -53,8 +48,6 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-	$SELECTEDORDER = 'Year';
 	
 }
 		
@@ -75,7 +68,6 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			
 			echo "<tr>";
     	foreach ($row as $field => $value) { 
-			
         echo "<td>" . $value . "</td>";
 		}
     	echo "</tr>";
@@ -83,7 +75,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		echo "</table>";
 		
 		while ($row = mysqli_fetch_array($result)) { 
-       	$productname[]  = $row['ProdName']  ;
+       	$productname[]  = $row['ProdName'];
         $sales[] = $row['Quantity'];
 	    }
 	}
@@ -101,7 +93,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
     </head>
     <body>
         <div style="width:60%;hieght:20%;text-align:center">
-            <div>Sales Stats</div>
+            <h2 class="page-header" >Analytics Reports </h2>
+            <div>Product </div>
             <canvas  id="chartjs_bar"></canvas> 
         </div>    
     </body>
@@ -142,5 +135,4 @@ $conn = new mysqli($host, $username, $password, $dbname);
                 }
                 });
     </script>
-</html>  
-
+</html>
