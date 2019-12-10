@@ -39,8 +39,8 @@ if(isset($_POST["Search"])){
             echo "<tr>";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
+                echo "<button> Add to Cart </button>";
             }
-            echo "<button> Add to Cart </button>";
             echo "</tr>";
         }
         echo "</table>";		
