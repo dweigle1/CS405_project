@@ -23,7 +23,7 @@ if(isset($_SESSION["login_user"])){
 	} else{
 		
 		$login = $_SESSION["login_user"];
-		$sql = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC";	
+		$sql = "SELECT DISTINCT Products.ProdName, (Products.Price - (Products.Price*Promotions.Discount)) as SalePrice FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' JOIN Promotions ON Products.PID = Promotions.PID Order BY ProdName ASC";	
 		$result = mysqli_query($conn, $sql);
         $conn->close();
 
