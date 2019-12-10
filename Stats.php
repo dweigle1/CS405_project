@@ -72,18 +72,21 @@ $conn = new mysqli($host, $username, $password, $dbname);
 
 		echo "</tr>";
 		while ($row = mysqli_fetch_assoc($result)) {
-    	$productname[]  = $row['Products.ProdName']  ;
-        $sales[] = $row['OrderProducts.Quantity'];
+			
 			echo "<tr>";
     	foreach ($row as $field => $value) { 
+			
         echo "<td>" . $value . "</td>";
 		}
     	echo "</tr>";
 		}
 		echo "</table>";
 		
-       	        
+		while ($row = mysqli_fetch_array($result)) { 
+       	$productname[]  = $row['Products.ProdName']  ;
+        $sales[] = $row['OrderProducts.Quantity'];
 	    }
+	}
 	
 ?>
 
@@ -97,8 +100,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
     </head>
     <body>
         <div style="width:60%;hieght:20%;text-align:center">
-            <h2 class="page-header" >Analytics Reports </h2>
-            <div>Product </div>
+           
+            <div>Sales Stats</div>
             <canvas  id="chartjs_bar"></canvas> 
         </div>    
     </body>
