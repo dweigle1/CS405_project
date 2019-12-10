@@ -77,8 +77,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
 		while ($row = mysqli_fetch_array($result)) { 
  
-            $productname[]  = $row['Products.ProdName'];
-            $sales[] = $row['OrderProducts.Quantity'];
+            $productname[]  = $row[2];
+            $sales[] = $row[3];
         }
 	
 	}
