@@ -74,7 +74,9 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		}
 		echo "</table>";
 		
-		
+		while ($row = mysqli_fetch_assoc($result)) {
+			printf ("name: %s  Quant: %s", $row["Products.ProdName"], $row["OrderProducts.Quantity"]);
+	    }
 		
 	}
 
