@@ -33,13 +33,14 @@ if(isset($_POST["Search"])){
         
         echo "<th>Product Name</th>";
         echo "<th>Price</th>";
+        echo "<th> Button </th>";
 
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
-                echo "<button> Add to Cart </button>";
+                echo "<td><button> Add to Cart </button></td>";
             }
             echo "</tr>";
         }
