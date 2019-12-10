@@ -26,17 +26,13 @@ if(isset($_POST["Search"])){
 		$number = mysqli_num_rows($result);
           $row = mysqli_fetch_row($result);
           $conn->close();
-          
+
         echo "<br>";
         echo "<table border='1' style='width:100%'>";
         echo "<tr>";
-
-        echo "<th>PID</th>";
-        echo "<th>Quantity</th>";
-        echo "<th>Price</th>";
-        echo "<th>Category</th>";
+        
         echo "<th>Product Name</th>";
-        echo "<th>Keyword</th>";
+        echo "<th>Price</th>";
 
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
@@ -44,6 +40,7 @@ if(isset($_POST["Search"])){
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
             }
+            echo "<button> Add to Cart </button>";
             echo "</tr>";
         }
         echo "</table>";		
