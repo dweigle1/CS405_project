@@ -24,12 +24,6 @@ if($ip_server == "158.69.195.142")
 <?php
 $conn = new mysqli($host, $username, $password, $dbname);
 
-select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
- from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
- ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 12 MONTH) and CURRENT_TIMESTAMP;
-
-
 	$conn = new mysqli($host, $username, $password, $dbname);
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
