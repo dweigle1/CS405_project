@@ -78,11 +78,16 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		$row = null;
 		$chart_data="";
 		echo $result;
-		while ($row = mysqli_fetch_assoc($result)) { 
- 			echo $row;
-            array_push($productname, $row["Products.ProdName"]);
-            array_push($sales, $row["OrderProducts.Quantity"]);
+		while ($row = $result->fetch_array(MYSQLI_NUM)) { 
+			
+			printf ("%s (%s)\n", $row["0"], $row["1"]);
+// 			echo $row;
+//            array_push($productname, $row["Products.ProdName"]);
+//            array_push($sales, $row["OrderProducts.Quantity"]);
         }
+
+
+		
 	
 	}
 
