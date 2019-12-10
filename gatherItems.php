@@ -20,7 +20,7 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-        $sql = "SELECT Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
+        $sql = "SELECT Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
 		
 		$result = mysqli_query($conn, $query);
           $conn->close();
