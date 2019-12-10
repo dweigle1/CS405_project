@@ -59,6 +59,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
 }
 		
 		$result = mysqli_query($conn, $sql);
+		 $chart_data="";
+		
 		echo "<br>";
 		echo "<table border='1' style='width:100%'>";
 		echo "<tr>";
@@ -70,7 +72,9 @@ $conn = new mysqli($host, $username, $password, $dbname);
 
 		echo "</tr>";
 		while ($row = mysqli_fetch_assoc($result)) {
-    	echo "<tr>";
+    	$productname[]  = $row['Products.ProdName']  ;
+        $sales[] = $row['OrderProducts.Quantity'];
+			echo "<tr>";
     	foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
 		}
@@ -80,43 +84,54 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
        	        
 	    }
-
-
-
- 
-$dataPoints = array();
-//Best practice is to create a separate file for handling connection to database
-	echo $sql2;
-	$result = mysqli_query($conn, $sql2);
-	
-    foreach($result as $row){
-        array_push($dataPoints, array("TimeOrdered"=> $row->TimeOrdered, "Quantity"=> $row->Quantity));
-    }
-
-
 	
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>  
-<script>
-window.onload = function () {
+
+
+	
+	<script type="text/javascript">
+      var ctx = document.getElementById("chartjs_bar").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels:<?php echo json_encode($productname); ?>,
+                        datasets: [{
+                            backgroundColor: [
+                               "#5969ff",
+                                "#ff407b",
+                                "#25d5f2",
+                                "#ffc750",
+                                "#2ec551",
+                                "#7040fa",
+                                "#ff004e"
+                            ],
+                            data:<?php echo json_encode($sales); ?>,
+                        }]
+                    },
+                    options: {
+                           legend: {
+                        display: true,
+                        position: 'bottom',
  
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	exportEnabled: true,
-	theme: "light1", // "light1", "light2", "dark1", "dark2"
-	title:{
-		text: "PHP Column Chart from Database"
-	},
-	data: [{
-		type: "column", //change type to bar, line, area, pie, etc  
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-chart.render();
+                        labels: {
+                            fontColor: '#71748d',
+                            fontFamily: 'Circular Std Book',
+                            fontSize: 14,
+                        }
+                    },
  
-}
+ 
+                }
+                });
+    </script>
+
+ 
+
+ 
+
 </script>
 </head>
 <body>
