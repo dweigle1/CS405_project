@@ -18,7 +18,7 @@ if($ip_server == "158.69.195.142")
 	
 	<input type="submit" name="Week" value="Show this week's stats">
 	<input type="submit" name="Month" value="Show this month's stats">
-	<input type="submit" name="Month" value="Show this year's stats">
+	<input type="submit" name="Year" value="Show this year's stats">
 </form>
 
 <?php
