@@ -68,7 +68,7 @@ div label {
 	
 	<div>
 		<label for="quantity">Discounted price</label>
-		<input type="number" name="discount" id="discount">
+		<input type="number" step="0.01" name="discount" id="discount">
 	</div>
 	
 
