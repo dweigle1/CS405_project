@@ -13,10 +13,8 @@ if($ip_server == "158.69.195.142")
 	$username = "root";
 }
 
-
-
 if(isset($_SESSION["login_user"])){
-    echo $_SESSION["login_user"];
+    
 	$conn = new mysqli($host, $username, $password, $dbname);
     if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -47,6 +45,11 @@ if(isset($_SESSION["login_user"])){
     }
 }
 ?>
+
+<form name="orderButton" method="post">
+    <input type="submit" value="order" name="submitOrder">
+</form>
+
 
 
 <?php include "footer.php"; ?>
