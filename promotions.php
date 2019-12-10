@@ -18,8 +18,8 @@ if(isset($_POST["add"])){
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $sql = "INSERT INTO Promotions (Coupon, Discount) 
-				VALUES ('".$_POST["coupon"]."', '".$_POST["discount"]."')";
+	    $sql = "INSERT INTO Promotions (PID, Discount) 
+				VALUES ('".$_POST["PID"]."', '".$_POST["discount"]."')";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
                echo "Successfully inserted promotion!";
@@ -35,7 +35,7 @@ if(isset($_POST["delete"])){
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
-	    $sql = "DELETE FROM Promotions WHERE Coupon='".$_POST["coupon"]."';";
+	    $sql = "DELETE FROM Promotions WHERE PID='".$_POST["PID"]."';";
 	    mysqli_free_result($result); 
 	    if (mysqli_query($conn, $sql)) {
                echo "Successfully ended promotion!";
@@ -62,13 +62,13 @@ div label {
 
 <form method="post">
 	<div>
-		<label for="pid">Coupon Code</label>
-		<input type="text" name="coupon" id="coupon">
+		<label for="pid">Product ID</label>
+		<input type="text" name="PID" id="PID">
 	</div>
 	
 	<div>
-		<label for="quantity">Discount (between 0 and 1)</label>
-		<input type="number" step="0.01" min="0" max="1" name="discount" id="discount">
+		<label for="quantity">Discounted price</label>
+		<input type="number" name="discount" id="discount">
 	</div>
 	
 
@@ -83,7 +83,7 @@ div label {
 $conn = new mysqli($host, $username, $password, $dbname);
 
 
-$sql = "SELECT * FROM Products";
+$sql = "SELECT  Products.PID, Products.Quantity, Products.Category, Products.ProdName, Products.Keyword, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID";
 $result = mysqli_query($conn, $sql);
 echo "<br>";
 echo "<table border='1' style='width:100%'>";
@@ -91,10 +91,11 @@ echo "<tr>";
 
 echo "<th>PID</th>";
 echo "<th>Quantity</th>";
-echo "<th>Price</th>";
 echo "<th>Category</th>";
 echo "<th>Product Name</th>";
 echo "<th>Keyword</th>";
+echo "<th>Price</th>";
+echo "<th>Discounted Price</th>";
 
 echo "</tr>";
 while ($row = mysqli_fetch_assoc($result)) {
