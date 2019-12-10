@@ -23,7 +23,7 @@ if(isset($_SESSION["login_user"])){
 	} else{
 		
 		$login = $_SESSION["login_user"];
-		$sql = "SELECT DISTINCT Products.ProdName, (Products.Price - (Products.Price*Promotions.Discount)) as SalePrice FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' JOIN Promotions ON Products.PID = Promotions.PID Order BY ProdName ASC";	
+		$sql = "SELECT DISTINCT Products.ProdName, (Products.Price - (Products.Price*Promotions.Discount)) as SalePrice FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Left JOIN Promotions ON Promotions.PID = Products.PID Order BY ProdName ASC";	
 		$result = mysqli_query($conn, $sql);
         $conn->close();
 
@@ -33,7 +33,7 @@ if(isset($_SESSION["login_user"])){
         
         echo "<th>Product Name</th>";
         echo "<th>Price</th>";
-        echo "<th> Button </th>";
+        echo "<th>Discounted Price</th>";
 
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
@@ -41,7 +41,6 @@ if(isset($_SESSION["login_user"])){
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
             }
-            echo "<td><button> Add to Cart </button></td>";
             echo "</tr>";
         }
         echo "</table>";		
