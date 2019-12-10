@@ -20,7 +20,7 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '"%.$_POST["Search"].%"' OR Keyword LIKE '"%.$_POST["Search"].%"';";	
+		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '"%.$Search.%"' OR Keyword LIKE '"%.$Search.%"'";	
 		
 		$result = mysqli_query($conn, $query);		
 		$number = mysqli_num_rows($result);
