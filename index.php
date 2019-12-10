@@ -13,7 +13,7 @@ if($ip_server == "158.69.195.142")
 	$username = "root";
 }
 $conn = new mysqli($host, $username, $password, $dbname);
-$sql = "SELECT ProdName, Price FROM Products";
+$sql = "SELECT ProdName, Price FROM Products ORDER BY ProdName";
 $result = mysqli_query($conn, $sql);
 $conn->close();
 
@@ -27,7 +27,6 @@ echo "<th>Price</th>";
 echo "</tr>";
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
-    echo Hello;
     foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
     }
