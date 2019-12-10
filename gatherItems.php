@@ -31,7 +31,7 @@ if(isset($_POST["Search"])){
         
         echo "<th>Product Name</th>";
         echo "<th>Price</th>";
-        echo "<th> Button </th>";
+        echo "<th> Add to Cart </th>";
 
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
