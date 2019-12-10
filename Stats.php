@@ -89,7 +89,7 @@ $dataPoints = array();
 
 	$result2 = mysqli_query($conn, $sql2);
 	
-    foreach($result as $row2){
+    foreach($result2 as $row2){
         array_push($dataPoints, array("x"=> $row2->TimeOrdered, "y"=> $row2->Quantity));
     }
 
