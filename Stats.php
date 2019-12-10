@@ -74,10 +74,13 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		}
 		echo "</table>";
 		
-		while ($row = mysqli_fetch_array($result)) { 
-       	$productname[]  = $row['ProdName'];
-        $sales[] = $row['Quantity'];
-	    }
+//		while ($row = mysqli_fetch_array($result)) { 
+//       	$productname[]  = $row['ProdName'];
+//        $sales[] = $row['Quantity'];
+//	    }
+		
+		$productname[] = 'poop';
+		$sales[] = 2;
 	}
 
 	
