@@ -33,7 +33,7 @@ if(isset($_POST["add"])){
 }
 ?>
 
-<h1>Add Inventory</h1>
+<h1 style="text-align: center; margin-bottom: -2px;">Add Inventory</h1>
 
 <style>
 div {
@@ -80,7 +80,7 @@ div label {
 </form>
 
 
-<h1>Current Inventory</h1>
+<h1 style="text-align: center; margin-bottom: -10px;">Current Inventory</h1>
 
 <?php
 $conn = new mysqli($host, $username, $password, $dbname);
@@ -107,7 +107,7 @@ if(isset($_POST["update"])){
 $sql = "SELECT * FROM Products";
 $result = mysqli_query($conn, $sql);
 echo "<br>";
-echo "<table border='1' style='width:100%'>";
+echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
 echo "<tr>";
 
 echo "<th>PID</th>";

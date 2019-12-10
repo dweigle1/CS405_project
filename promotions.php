@@ -48,7 +48,7 @@ if(isset($_POST["delete"])){
 }
 ?>
 
-<h1>Edit Promotions</h1>
+<h1 style="text-align: center; margin-bottom: -2px;">Edit Promotions</h1>
 
 <style>
 div {
@@ -77,7 +77,7 @@ div label {
 </form>
 
 
-<h1>Current Inventory</h1>
+<h1 style="text-align: center; margin-bottom: -15px;">Current Inventory</h1>
 
 <?php
 $conn = new mysqli($host, $username, $password, $dbname);
@@ -86,7 +86,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 $sql = "SELECT  Products.PID, Products.Quantity, Products.Category, Products.ProdName, Products.Keyword, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID";
 $result = mysqli_query($conn, $sql);
 echo "<br>";
-echo "<table border='1' style='width:100%'>";
+echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
 echo "<tr>";
 
 echo "<th>PID</th>";

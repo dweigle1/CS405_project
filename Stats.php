@@ -55,7 +55,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
 		
 		echo "<br>";
-		echo "<table border='1' style='width:100%'>";
+		echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
 		echo "<tr>";
 
 		echo "<th>OrderID</th>";

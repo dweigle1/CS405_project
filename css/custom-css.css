@@ -14,6 +14,7 @@ input[type="submit"].logout {
   text-decoration: none;
   color: #007bff;
   cursor: pointer;
+  padding-bottom: 3px;
 }
 
 .btn-outline-success {

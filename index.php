@@ -19,12 +19,12 @@ $conn->close();
 
 //echo Total List of Products;
 echo "<br>";
-echo "<table border='1' style='width:100%'>";
+echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
 echo "<tr>";
 
 echo "<th>Product Name</th>";
 echo "<th>Price</th>";
-echo "<th> Add to Cart </th>";
+echo "<th></th>";
 
 echo "</tr>";
 while ($row = mysqli_fetch_assoc($result)) {
@@ -32,7 +32,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
     }
-    echo "<td><button> Add to Cart </button></td>";
+    echo "<td><button>Purchase</button></td>";
     echo "</tr>";
 }
 echo "</table>";

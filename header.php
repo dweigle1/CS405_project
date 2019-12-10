@@ -3,18 +3,14 @@
 <?php
 session_start();
 
-if (!(isset($_SESSION['login_user']) && $_SESSION['login_user'] != '') && basename($_SERVER['PHP_SELF']) != 'login.php'
-    && basename($_SERVER['PHP_SELF']) != 'create.php') {
-	header ("Location: login.php");
-}
-else
+if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['logout']))
 {
-    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction']))
-    {
-        session_start();
-		session_destroy();
-		header ("Location: login.php");
-    }
+	session_destroy();
+	header ("Location: index.php");
+}
+else if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login']))
+{
+	header ("Location: login.php");
 }
 
 ?>
@@ -61,11 +57,9 @@ else
 				echo '<li class="nav-item"><a class="nav-link" href="./ShipOrder.php">Ship Orders</a></li>';
 				
 			}
+			echo '<li class="nav-item active"><a class="nav-link" href="gatherCart.php">Cart <span class="sr-only">(current)</span></a></li>';
 		}
 	?>
-		<li class="nav-item active">
-        <a class="nav-link" href="gatherCart.php">Cart <span class="sr-only">(current)</span></a>
-      </li>
     </ul>
 	
     <form action="gatherItems.php" method="post" class="form-inline">
