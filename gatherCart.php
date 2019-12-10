@@ -10,7 +10,7 @@ if(isset($_SESSION["login_user"])){
 	} else{
 		
 		$login = $_SESSION["login_user"];
-		$sql = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC;";	
+		$sql = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC";	
 		
 		$result = mysqli_query($conn, $sql);
         $conn->close();
