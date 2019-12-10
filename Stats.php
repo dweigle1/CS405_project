@@ -56,14 +56,14 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
 		echo "<br>";
 		echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
-		echo "<tr>";
+		echo "<thead class='thead-dark'><tr>";
 
 		echo "<th>OrderID</th>";
 		echo "<th>timeOrdered</th>";
 		echo "<th>ProdName</th>";
 		echo "<th>Quantity</th>";
 
-		echo "</tr>";
+		echo "</tr></thead>";
 		while ($row = mysqli_fetch_assoc($result)) {
 			
 			echo "<tr>";

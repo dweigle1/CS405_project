@@ -87,7 +87,7 @@ $sql = "SELECT  Products.PID, Products.Quantity, Products.Category, Products.Pro
 $result = mysqli_query($conn, $sql);
 echo "<br>";
 echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
-echo "<tr>";
+echo "<thead class='thead-dark'><tr>";
 
 echo "<th>PID</th>";
 echo "<th>Quantity</th>";
@@ -97,7 +97,7 @@ echo "<th>Keyword</th>";
 echo "<th>Price</th>";
 echo "<th>Discounted Price</th>";
 
-echo "</tr>";
+echo "</tr></thead>";
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
     foreach ($row as $field => $value) { 

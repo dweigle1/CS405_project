@@ -20,13 +20,13 @@ $conn->close();
 //echo Total List of Products;
 echo "<br>";
 echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
-echo "<tr>";
+echo "<thead class='thead-dark'><tr>";
 
 echo "<th>Product Name</th>";
 echo "<th>Price</th>";
 echo "<th></th>";
 
-echo "</tr>";
+echo "</tr></thead>";
 while ($row = mysqli_fetch_assoc($result)) {
     echo "<tr>";
     foreach ($row as $field => $value) { 
