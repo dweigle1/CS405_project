@@ -52,7 +52,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 }
 		
 		$result = mysqli_query($conn, $sql);
-		$chart_data="";
+		
 		
 		echo "<br>";
 		echo "<table border='1' style='width:100%'>";
@@ -74,11 +74,13 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		}
 		echo "</table>";
 		
-		
-		while ($row = mysqli_fetch_array($result)) { 
+		$result = mysqli_query($conn, $sql);
+		$row = null;
+		$chart_data="";
+		while ($row = mysqli_fetch_assoc($result)) { 
  
-            $productname[]  = $row[2];
-            $sales[] = $row[3];
+            array_push($productname, $row["Products.ProdName"]);
+            array_push($sales, $row["OrderProducts.Quantity"]);
         }
 	
 	}
