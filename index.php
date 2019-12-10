@@ -15,6 +15,8 @@ if($ip_server == "158.69.195.142")
 
 $sql = "SELECT ProdName, Price FROM Products";
 $result = mysqli_query($conn, $sql);
+$conn->close();
+
 echo "<br>";
 echo "<table border='1' style='width:100%'>";
 echo "<tr>";
