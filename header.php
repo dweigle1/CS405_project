@@ -51,12 +51,15 @@ else
 			if($_SESSION["login_role"] == "Manager")
 			{
 				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
-				echo '<li class="nav-item"><a class="nav-link" href="./promotions.php">Promotions</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./ShipOrder.php">Ship Orders</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./promotions.php">Set Promotions</a></li>';
 				echo '<li class="nav-item"><a class="nav-link" href="./Stats.php">Sales Statistics</a></li>';
 			}
 			else if($_SESSION["login_role"] == "Staff")
 			{
 				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./ShipOrder.php">Ship Orders</a></li>';
+				
 			}
 		}
 	?>
