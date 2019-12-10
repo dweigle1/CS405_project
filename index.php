@@ -31,5 +31,6 @@ $result = mysqli_query($conn, $sql);
 //     echo "</tr>";
 // }
 // echo "</table>";
+?>
 
 <?php include "footer.php"; ?>
