@@ -40,8 +40,8 @@ if(isset($_POST["Search"])){
             echo "<tr>";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
-                //echo "<td><button> Add to Cart </button></td>";
             }
+            echo "<td><button> Add to Cart </button></td>";
             echo "</tr>";
         }
         echo "</table>";		
