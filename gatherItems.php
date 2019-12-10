@@ -24,7 +24,7 @@ if(isset($_POST["Search"])){
 		
 		$result = mysqli_query($conn, $query);		
 		$number = mysqli_num_rows($result);
-          $row = mysqli_fetch_row($result);
+          //$row = mysqli_fetch_row($result);
           $conn->close();
 
         echo "<br>";
