@@ -80,7 +80,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		echo $result;
 		while ($row = $result->fetch_array(MYSQLI_NUM)) { 
 			
-			printf ("%s (%s)\n", $row["0"], $row["1"]);
+			printf ("%s (%s)\n", $row[0], $row[1]);
 // 			echo $row;
 //            array_push($productname, $row["Products.ProdName"]);
 //            array_push($sales, $row["OrderProducts.Quantity"]);
