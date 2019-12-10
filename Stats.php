@@ -52,7 +52,6 @@ $conn = new mysqli($host, $username, $password, $dbname);
 }
 		
 		$result = mysqli_query($conn, $sql);
-		$result2 = $result;
 		$chart_data="";
 		
 		echo "<br>";
@@ -75,9 +74,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		}
 		echo "</table>";
 		
-		while ($row2 = mysqli_fetch_array($result2)) { 
-       	$productname[]  = 'product';
-        $sales[] = 2;
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) { 
+			printf("Prod: %s  Quant: %s", $row["ProdName"], $row["Quantity"]);
 	    }
 		
 	}
