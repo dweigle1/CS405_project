@@ -33,6 +33,7 @@ if(isset($_SESSION["login_user"])){
 	}
 	echo "</table>";
 	}
+	$conn->close();
 }
 ?>
 
