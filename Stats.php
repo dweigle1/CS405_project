@@ -86,11 +86,11 @@ $conn = new mysqli($host, $username, $password, $dbname);
  
 $dataPoints = array();
 //Best practice is to create a separate file for handling connection to database
-
-	$result2 = mysqli_query($conn, $sql2);
+	echo $sql2;
+	$result = mysqli_query($conn, $sql2);
 	
-    while ($row2 = mysqli_fetch_assoc($result2)){
-        array_push($dataPoints, array("x"=> $row2->TimeOrdered, "y"=> $row2->Quantity));
+    foreach($result as $row){
+        array_push($dataPoints, array("x"=> $row->TimeOrdered, "y"=> $row->Quantity));
     }
 
 
