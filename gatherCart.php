@@ -6,8 +6,8 @@
 if(isset($_SESSION["login_user"])){
     echo $_SESSION["login_user"];
 	$conn = new mysqli($host, $username, $password, $dbname);
-        if ($conn->connect_error) {
-               die("Connection failed: " . $conn->connect_error);
+    if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
 	} else{
 		
 		$login = $_SESSION["login_user"];
@@ -27,6 +27,7 @@ if(isset($_SESSION["login_user"])){
         echo "</tr>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
+            echo "Hello";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
             }
