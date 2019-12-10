@@ -10,12 +10,10 @@ if(isset($_SESSION["login_user"])){
 	} else{
 		
 		$login = $_SESSION["login_user"];
-		$query = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC;";	
+		$sql = "SELECT DISTINCT ProdName, Price FROM Products JOIN ShopsFor ON Products.PID = ShopsFor.PID AND ShopsFor.UserName = '".$login."' Order BY ProdName ASC;";	
 		
-		$result = mysqli_query($conn, $query);		
-		$number = mysqli_num_rows($result);
-          $row = mysqli_fetch_row($result);
-          $conn->close();
+		$result = mysqli_query($conn, $sql);
+        $conn->close();
 
         echo "<br>";
         echo "<table border='1' style='width:100%'>";
