@@ -12,7 +12,7 @@ if($ip_server == "158.69.195.142")
 {
 	$username = "root";
 }
-
+$conn = new mysqli($host, $username, $password, $dbname);
 $sql = "SELECT ProdName, Price FROM Products";
 $result = mysqli_query($conn, $sql);
 $conn->close();
