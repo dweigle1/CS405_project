@@ -87,6 +87,8 @@ $conn = new mysqli($host, $username, $password, $dbname);
         $sales[] = $row['OrderProducts.Quantity'];
 	    }
 	}
+echo $productname;
+echo $sales;
 	
 ?>
 
@@ -100,7 +102,6 @@ $conn = new mysqli($host, $username, $password, $dbname);
     </head>
     <body>
         <div style="width:60%;hieght:20%;text-align:center">
-           
             <div>Sales Stats</div>
             <canvas  id="chartjs_bar"></canvas> 
         </div>    
