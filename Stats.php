@@ -34,24 +34,28 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
+			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
 		$SELECTEDORDER = 'Week';
+	
 }
 		if(isset($_POST["Month"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
-	$SELECTEDORDER = 'Month';	
+			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
+	$SELECTEDORDER = 'Month';
+			
+	
 }
 		if(isset($_POST["Year"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
-			$sql2 = "select TimeOrdered FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
+			$sql2 = "select TimeOrdered, Quantity FROM Orders where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";
 	$SELECTEDORDER = 'Year';
+	
 }
 		
 		$result = mysqli_query($conn, $sql);
@@ -63,13 +67,12 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		echo "<th>timeOrdered</th>";
 		echo "<th>ProdName</th>";
 		echo "<th>Quantity</th>";
-		
+
 		echo "</tr>";
 		while ($row = mysqli_fetch_assoc($result)) {
     	echo "<tr>";
     	foreach ($row as $field => $value) { 
         echo "<td>" . $value . "</td>";
-			
 		}
     	echo "</tr>";
 		}
@@ -77,13 +80,21 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		
        	        
 	    }
-$result2 = mysqli_query($conn, $sql);
-$dept = array();
-    while($row2=mysql_fetch_array($result2))
-    {
-      $dept[]=$row['timeOrdered'];
-     }
 
+
+
+ 
+$dataPoints = array();
+//Best practice is to create a separate file for handling connection to database
+try{
+
+	$result2 = mysqli_query($conn, $sql2);
+	
+    foreach($result as $row2){
+        array_push($dataPoints, array("x"=> $row2->x, "y"=> $row2->y));
+    }
+
+}
 
 	
 ?>
@@ -98,14 +109,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	exportEnabled: true,
 	theme: "light1", // "light1", "light2", "dark1", "dark2"
 	title:{
-		text: "Sales for the past " <?php $SELECTEDORDER; ?>
+		text: "PHP Column Chart from Database"
 	},
 	data: [{
-		type: "column", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
-		indexLabelFontColor: "#5A5757",
-		indexLabelPlacement: "outside",   
-		dept: <?php echo json_encode($dept, JSON_NUMERIC_CHECK); ?>
+		type: "column", //change type to bar, line, area, pie, etc  
+		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart.render();
@@ -117,5 +125,5 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
-</html>                              
+</html>   
 
