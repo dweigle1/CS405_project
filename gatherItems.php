@@ -55,7 +55,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         echo $key;
         if (strpos($key, 'addToCart_-_'))
         {
-            $x = str_replace('addToCart_-_','',$key);
+            echo "me";
+            $x = str_replace('addToCart_-_','a',$key);
             echo $x;
         }
     }
