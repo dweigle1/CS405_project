@@ -20,7 +20,7 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-        $sql = "SELECT Product.PID, Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
+        $sql = "SELECT Products.PID, Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
 		
 		$result = mysqli_query($conn, $sql);
         $conn->close();
@@ -35,7 +35,6 @@ if(isset($_POST["Search"])){
         echo "<th> Add to Cart </th>";
 
         echo "</tr>";
-        $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>". $row["ProdName"] ."</td>";
