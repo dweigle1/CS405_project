@@ -1,134 +1,125 @@
 <?php include "header.php"; ?>
 
-<?php
-$host = "158.69.195.142";
-$username = "test";
-$password = "password";
-$dbname = "TOYZ";
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="css/login.css" />
+	</head>
 
-$ip_server = $_SERVER['SERVER_ADDR']; 
+	<body>
+		<div style="display: flex; justify-content: space-around;">
+			<?php
+			$host = "158.69.195.142";
+			$username = "test";
+			$password = "password";
+			$dbname = "TOYZ";
 
-if($ip_server == "158.69.195.142")
-{
-	$username = "root";
-}
+			$ip_server = $_SERVER['SERVER_ADDR']; 
 
-if(isset($_POST["add"])){
-	$conn = new mysqli($host, $username, $password, $dbname);
-	if ($conn->connect_error) {
-               die("Connection failed: " . $conn->connect_error);
-	} else{
-	    $sql = "INSERT INTO Products (PID, Quantity, Price, Category, ProdName, Keyword) 
-				VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."', '".$_POST["price"]."', '".$_POST["category"]."',
-						'".$_POST["pname"]."', '".$_POST["keyword"]."')";
-	    mysqli_free_result($result); 
-	    if (mysqli_query($conn, $sql)) {
-               echo "Successfully inserted product information!";
-            } else {
-               echo "Error: " . $sql . "" . mysqli_error($conn);
-            }
-            $conn->close();
-       	        
-	    }
-}
-?>
+			if($ip_server == "158.69.195.142")
+			{
+				$username = "root";
+			}
 
-<h1 style="text-align: center; margin-bottom: -2px;">Add Inventory</h1>
+			if(isset($_POST["add"])){
+				$conn = new mysqli($host, $username, $password, $dbname);
+				if ($conn->connect_error) {
+						   die("Connection failed: " . $conn->connect_error);
+				} else{
+					$sql = "INSERT INTO Products (PID, Quantity, Price, Category, ProdName, Keyword) 
+							VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."', '".$_POST["price"]."', '".$_POST["category"]."',
+									'".$_POST["pname"]."', '".$_POST["keyword"]."')";
+					mysqli_free_result($result); 
+					if (mysqli_query($conn, $sql)) {
+						   echo "Successfully inserted product information!";
+						} else {
+						   echo "Error: " . $sql . "" . mysqli_error($conn);
+						}
+						$conn->close();
+							
+					}
+			}
+			?>
+			<div>
+				<h1 style="text-align: center; margin-bottom: -10px;">Current Inventory</h1>
 
-<style>
-div {
-    display: inline-block;
-}
+				<?php
+				$conn = new mysqli($host, $username, $password, $dbname);
 
-div label {
-    display: block;
-}
-</style>
+				if(isset($_POST["update"])){
+					$conn = new mysqli($host, $username, $password, $dbname);
+					if ($conn->connect_error) {
+							   die("Connection failed: " . $conn->connect_error);
+					} else{
+						$sql = "INSERT INTO Products (PID, Quantity, Price, Category, ProdName, Keyword) 
+								VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."', '".$_POST["price"]."', '".$_POST["category"]."',
+										'".$_POST["pname"]."', '".$_POST["keyword"]."')";
+						mysqli_free_result($result); 
+						if (mysqli_query($conn, $sql)) {
+							   echo "Successfully inserted product information!";
+							} else {
+							   echo "Error: " . $sql . "" . mysqli_error($conn);
+							}
+							$conn->close();
+						}
+				}
 
-<form method="post">
-	<div>
-		<label for="pid">Product ID</label>
-		<input type="text" name="pid" id="pid">
-	</div>
-	
-	<div>
-		<label for="quantity">Quantity</label>
-		<input type="number" name="quantity" id="quantity">
-	</div>
-	
-	<div>
-		<label for="price">Price</label>
-		<input type="number" name="price" id="price">
-	</div>
-	
-	<div>
-		<label for="category">Category</label>
-		<input type="text" name="category" id="category">
-	</div>
+				$sql = "SELECT * FROM Products";
+				$result = mysqli_query($conn, $sql);
+				echo "<br>";
+				echo "<table border='1' style='margin: 0 auto;' class='table'>";
+				echo "<thead class='thead-dark'><tr>";
 
-	<div>
-		<label for="pname">Product Name</label>
-		<input type="text" name="pname" id="pname">
-	</div>
-	
-	<div>
-		<label for="keyword">Keyword</label>
-		<input type="text" name="keyword" id="keyword">
-	</div>
+				echo "<th>PID</th>";
+				echo "<th>Quantity</th>";
+				echo "<th>Price</th>";
+				echo "<th>Category</th>";
+				echo "<th>Product Name</th>";
+				echo "<th>Keyword</th>";
 
-	<input type="submit" name="add" value="Add Item">
-</form>
-
-
-<h1 style="text-align: center; margin-bottom: -10px;">Current Inventory</h1>
-
-<?php
-$conn = new mysqli($host, $username, $password, $dbname);
-
-if(isset($_POST["update"])){
-	$conn = new mysqli($host, $username, $password, $dbname);
-	if ($conn->connect_error) {
-               die("Connection failed: " . $conn->connect_error);
-	} else{
-	    $sql = "INSERT INTO Products (PID, Quantity, Price, Category, ProdName, Keyword) 
-				VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."', '".$_POST["price"]."', '".$_POST["category"]."',
-						'".$_POST["pname"]."', '".$_POST["keyword"]."')";
-	    mysqli_free_result($result); 
-	    if (mysqli_query($conn, $sql)) {
-               echo "Successfully inserted product information!";
-            } else {
-               echo "Error: " . $sql . "" . mysqli_error($conn);
-            }
-            $conn->close();
-       	        
-	    }
-}
-
-$sql = "SELECT * FROM Products";
-$result = mysqli_query($conn, $sql);
-echo "<br>";
-echo "<table border='1' style='width:80%; margin: 0 auto;' class='table'>";
-echo "<thead class='thead-dark'><tr>";
-
-echo "<th>PID</th>";
-echo "<th>Quantity</th>";
-echo "<th>Price</th>";
-echo "<th>Category</th>";
-echo "<th>Product Name</th>";
-echo "<th>Keyword</th>";
-
-echo "</tr></thead>";
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>";
-    foreach ($row as $field => $value) { 
-        echo "<td>" . $value . "</td>";
-    }
-    echo "</tr>";
-}
-echo "</table>";
+				echo "</tr></thead>";
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo "<tr>";
+					foreach ($row as $field => $value) { 
+						echo "<td>" . $value . "</td>";
+					}
+					echo "</tr>";
+				}
+				echo "</table>";
 
 
-?>
+				?>
+			</div>
+			<div style="width: 25%;" class="formContent">
+				<h1 style="text-align: center; margin-bottom: 5px;">Add Inventory</h1>
 
+				<form method="post">
+					<input type="text" name="pid" id="pid" placeholder="product id">
+					
+					<input type="number" name="quantity" id="quantity" placeholder="quantity">
 
-<?php include "footer.php"; ?>
+					<input type="number" name="price" id="price" placeholder="price">
+
+					<input type="text" name="category" id="category" placeholder="category">
+
+					<input type="text" name="pname" id="pname" placeholder="product name">
+
+					<input type="text" name="keyword" id="keyword" placeholder="keyword">
+
+					<input type="submit" name="add" value="Add" class="login-input">
+				</form>
+				
+				<h1 style="text-align: center; margin-top: -15px;">Update Inventory</h1>
+				
+				<form method="post">
+					<input type="text" name="pid" id="pid" placeholder="product id">
+					
+					<input type="number" name="quantity" id="quantity" placeholder="quantity">
+
+					<input type="submit" name="add" value="Add" class="login-input">
+				</form>
+			</div>
+		</div>
+		<?php include "footer.php"; ?>
+	</body>
+</html>
