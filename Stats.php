@@ -114,7 +114,7 @@ $rows = array();
 while ($r = $qresult->fetch_assoc()) {
         $temp = array();
         $temp[] = array('v' => (string) $r['ProductName']);
-	echo $temp;
+	echo $temp[0];
     // Values of each slice
     $temp[] = array('v' => (int) $r['Quantity']);
     $rows[] = array('c' => $temp);
