@@ -13,7 +13,7 @@ if($ip_server == "158.69.195.142")
 	$username = "root";
 }
 $conn = new mysqli($host, $username, $password, $dbname);
-$sql = "SELECT Products.PID, Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PIDORDER BY ProdName";
+$sql = "SELECT Products.PID, Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID ORDER BY ProdName";
 $result = mysqli_query($conn, $sql);
 $conn->close();
 
@@ -24,6 +24,7 @@ echo "<thead class='thead-dark'><tr>";
 echo "<th>Product Name</th>";
 echo "<th>Price</th>";
 echo "<th>Discounted Price</th>";
+echo "<th> Add to Cart </th>";
 echo "<th></th>";
 
 echo "</tr></thead>";
