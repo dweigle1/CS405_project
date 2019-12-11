@@ -66,6 +66,7 @@ if(isset($_POST["placeOrder"])){
     $sql = "INSERT INTO Orders (OrderID, status, timeOrdered, UserName, Address) VALUES ('".$orderID."', 'Pending', '".$today."', '".$login."', '".$_POST["placeOrder"]."')";
     mysqli_free_result($result); 
     if (mysqli_query($conn, $sql)) {
+        $sql = "DELETE FROM ShopsFor WHERE UserName = '".$login."'";
         echo "Successfully inserted product information!";
     } else {
         echo "Error: " . $sql . "" . mysqli_error($conn);
