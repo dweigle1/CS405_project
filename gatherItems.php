@@ -38,7 +38,7 @@ if(isset($_POST["Search"])){
         $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>$row[1]</td>";
+            echo "<td>". $row[1] ."</td>";
             echo "<td>$row[2]</td>";
             echo "<td>$row[3]</td>";
             echo "<td><form method='post'><input type='submit' value='Add To Cart' name='addToCart - " .$row[0]. "'>Add to Cart</input></form></td>";
