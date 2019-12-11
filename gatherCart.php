@@ -53,8 +53,8 @@ if(isset($_SESSION["login_user"])){
 </form>
 
 <?php
-    if(isset($_SESSION["placeOrder"])){
-        echo "hello ;)";
+    if(isset($_POST["placeOrder"])){
+        echo $_POST["placeOrder"];
     }
 ?>
 
