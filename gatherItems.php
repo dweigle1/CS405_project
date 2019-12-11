@@ -52,11 +52,9 @@ if(isset($_POST["Search"])){
 if($_SERVER['REQUEST_METHOD'] == "POST"){
     foreach($_POST as $key => $value)
     {
-        echo $key;
         if (strpos($key, 'addToCart_-_') !== false)
         {
-            echo "me";
-            $x = str_replace('addToCart_-_','a',$key);
+            $x = str_replace('addToCart_-_','',$key);
             echo $x;
         }
     }
