@@ -58,6 +58,8 @@ else if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login']))
 				
 			}
 			echo '<li class="nav-item active"><a class="nav-link" href="gatherCart.php">Cart <span class="sr-only">(current)</span></a></li>';
+			 echo '<li class="nav-item active"><a class="nav-link" href="CustOrders.php">View Orders <span class="sr-only">(current)</span></a></li>';
+
 		}
 	?>
     </ul>
