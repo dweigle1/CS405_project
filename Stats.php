@@ -34,6 +34,10 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
+			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
 	
 }
 		if(isset($_POST["Month"])){
@@ -41,6 +45,10 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
+			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
 	
 }
 		if(isset($_POST["Year"])){
@@ -48,12 +56,20 @@ $conn = new mysqli($host, $username, $password, $dbname);
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
+			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
 	
 } else {
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
+			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
 		}
 		
 		$result = mysqli_query($conn, $sql);
@@ -85,23 +101,21 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		////////		////////		////////		////////		////////		////////		////////
 		
 	}
-$qresult = mysqli_query($conn, $sql);
+$qresult = mysqli_query($conn, $sql2);
 
 $rows = array();
 $table = array();
 $table['cols'] = array(
-        array('label' => 'Date', 'type' => 'string'),
-        array('label' => 'Quantity', 'type' => 'number'),
-        array('label' => 'Cost', 'type' => 'number')
+        array('label' => 'ProductName', 'type' => 'string'),
+        array('label' => 'Quantity', 'type' => 'number')
 );
 
 $rows = array();
 while ($r = $qresult->fetch_assoc()) {
         $temp = array();
-        $temp[] = array('v' => (string) $r['Date']);
+        $temp[] = array('v' => (string) $r['ProductName']);
     // Values of each slice
     $temp[] = array('v' => (int) $r['Quantity']);
-    $temp[] = array('v' => (float) $r['Cost']);
     $rows[] = array('c' => $temp);
 }
 
@@ -127,11 +141,11 @@ $jsonTable = json_encode($table);
       // Create our data table out of JSON data loaded from server.
       var data = new google.visualization.DataTable(<?=$jsonTable?>);
       var options = {
-        title: 'YTD Controllable Scrap Costs',
+        title: 'Sales Statistics',
         seriesType:'bars',
         series:{2: {type: 'line'}}
-//        width: 800,
-//        height: 600
+        width: 800,
+        height: 600
         };
       // Instantiate and draw our chart, passing in some options.
       // Do not forget to check your div ID
