@@ -18,12 +18,13 @@ if ($conn->connect_error){
 
 function ship($OrderID,$conn)
 {
-	$sql = "UPDATE Orders SET status = 'Shipped' WHERE OrderID = '$OrderID'";	       $result = mysqli_query($conn, $sql);
+	$sql = "UPDATE Orders SET status = 'Shipped' WHERE OrderID = '$OrderID'";
+	$result = mysqli_query($conn, $sql);
 	$sql = "SELECT PID, Quantity FROM OrderProducts WHERE OrderID = '$OrderID'";
 
  	$result = mysqli_query($conn, $sql);
     
-    	if (mysqli_num_rows($result) > 0) {
+	if (mysqli_num_rows($result) > 0) {
 		while ($row = mysqli_fetch_assoc($result)){
 			$soldQuantity = $row["Quantity"];
 			$PID = $row["PID"];
@@ -37,7 +38,7 @@ function ship($OrderID,$conn)
 			$newQuantity = $Quantity - $soldQuantity;
 
 			$sql = "UPDATE Products SET Quantity = '$newQuantity' WHERE PID = '$PID' ";
-			$result = mysqlimysqli_query($conn, $sql);
+			$result = mysqli_query($conn, $sql);
 		}
 	}
 }
@@ -79,13 +80,13 @@ function showComponents($OrderID,$conn)
     
     $result = mysqli_query($conn, $sql);
      
-    echo "<table border='1' style='width:100%'>";
-    echo "<tr>";
+    echo "<table border='1' style='width:100%' class='table'>";
+    echo "<thead class='thead-dark'><tr>";
     echo "<th>Product Name</th>";
     echo "<th>Price</th>";
     echo "<th>Discount per item</th>";
     echo "<th>Quantity</th>";
-    echo "</tr>";
+    echo "</tr></thead>";
 
     if (mysqli_num_rows($result) > 0) {
 	    while($row = mysqli_fetch_assoc($result)) {
@@ -110,11 +111,11 @@ function showComponents($OrderID,$conn)
 	    }
 	echo "</table>";
 	    
-	echo "<table border='1' style='width:50%'>";
-	echo "<tr>";
+	echo "<table border='1' style='width:50%' class='table'>";
+	echo "<thead class='thead-dark'><tr>";
 	echo "<th>Total Price</th>";
 	echo "<td>" . $price . "</td>";
-	echo "</tr>";
+	echo "</tr></thead>";
 	echo "</table>";
         //echo "Total Price: " . $price. "<br>";
     }
@@ -141,12 +142,12 @@ if (mysqli_num_rows($result) > 0) {
 	$check = 1;
 	
 	echo "<br>";
-	echo "<table border='1' style='width:50%'>";
-	echo "<tr>";
+	echo "<table border='1' style='width:50%' class='table'>";
+	echo "<thead class='thead-dark'><tr>";
 	echo "<th>OrderID</th>";
 	echo "<th>User</th>";
 	echo "<th>Address</th>";
-	echo "</tr>";
+	echo "</tr></thead>";
 	echo "<tr>";
 	echo "<td>" . $row["OrderID"]. "</td>";
 	echo "<td>" . $row["UserName"]. "</td>";
