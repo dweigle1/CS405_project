@@ -44,7 +44,13 @@ if(isset($_SESSION["login_user"])){
         echo "</table>";		
     }
 }
+
 ?>
+
+    <form method="post" class="form-inline">
+		<input class="form-control mr-sm-2" type="text" placeholder="Enter the Address" aria-label="placeOrder" name="placeOrder">
+		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	</form>
 
 
 
