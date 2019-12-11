@@ -54,7 +54,7 @@ else if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login']))
 			else if($_SESSION["login_role"] == "Staff")
 			{
 				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
-				echo '<li class="nav-item"><a class="nav-link" href="./ShipOrder.php">Ship Orders</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./StaffOrders.php">View Orders</a></li>';
 				
 			}
 			echo '<li class="nav-item active"><a class="nav-link" href="gatherCart.php">Cart <span class="sr-only">(current)</span></a></li>';

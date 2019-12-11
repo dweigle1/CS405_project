@@ -7,6 +7,7 @@ $password = "password";
 $dbname = "TOYZ";
 $ip_server = $_SERVER['SERVER_ADDR'];
 
+
 if ($ip_server == $host)
 	$username = "root";
 
@@ -15,6 +16,31 @@ if ($conn->connect_error){
 	die("Connection failed: " . $conn->connect_error);
 } else {
 
+function ship($OrderID,$conn)
+{
+	$sql = "UPDATE Orders SET status = 'Shipped' WHERE OrderID = '$OrderID'";	       $result = mysqli_query($conn, $sql);
+	$sql = "SELECT PID, Quantity FROM OrderProducts WHERE OrderID = '$OrderID'";
+
+ 	$result = mysqli_query($conn, $sql);
+    
+    	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_assoc($result)){
+			$soldQuantity = $row["Quantity"];
+			$PID = $row["PID"];
+			$sql = "SELECT Quantity FROM Products WHERE PID = '$PID'";
+			$result = mysqli_query($conn, $sql);
+    			if (mysqli_num_rows($result) > 0) {
+				while ($row = mysqli_fetch_assoc($result)){
+					$Quantity = $row["Quantity"];
+				}
+			}
+			$newQuantity = $Quantity - $soldQuantity;
+
+			$sql = "UPDATE Products SET Quantity = '$newQuantity' WHERE PID = '$PID' ";
+			$result = mysqlimysqli_query($conn, $sql);
+		}
+	}
+}
 
 function hasInv($pid,$num,$conn)
 {
@@ -32,6 +58,14 @@ function hasInv($pid,$num,$conn)
     }
     return $check;
  
+}
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+      if($_POST["HasEnough"])
+            ship($_POST["OrderID"],$conn);
+      else
+            echo "Order not possible";
 }
 
 
@@ -84,8 +118,17 @@ function showComponents($OrderID,$conn)
 	echo "</table>";
         //echo "Total Price: " . $price. "<br>";
     }
+?>
+<form action="StaffOrders.php" method="post" class="form-inline">
+	<input type="hidden" name = "OrderID" value = "<?= $OrderID?>">
+	<input type="hidden" name = "HasEnough" value = "<?= $check ?>">
+	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ship Order</button>
+</form>
+
+<?php
      
     return $check;
+
 	 
 }
 
@@ -112,6 +155,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "</table>";
 	 
 	$check = showComponents($row["OrderID"],$conn);
+	/*
         ?>
         <form action ="ShipOrder.php" method = "POST">
             <input type="hidden" name = "OrderID" value = "<?= $row["OrderID"]?>">
@@ -119,8 +163,8 @@ if (mysqli_num_rows($result) > 0) {
 	    <input type="hidden" name = "Connection" value = "<?= $conn?>">
             <input type="Ship It">
         </form>
-        <?php 
-
+	<?php 
+	*/
     }
 } else {
     echo "No Pending Orders";
