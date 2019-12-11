@@ -94,13 +94,13 @@ $conn = new mysqli($host, $username, $password, $dbname);
     	echo "</tr>";
 		}
 		echo "</table>";
-		
+	}
 
 		
 		
-		////////		////////		////////		////////		////////		////////		////////
-		
-	}
+		//////// 		////////		Below here lies the graph shit       ////////		////////			
+	
+
 $qresult = mysqli_query($conn, $sql2);
 
 $rows = array();
@@ -143,9 +143,9 @@ $jsonTable = json_encode($table);
       var options = {
         title: 'Sales Statistics',
         seriesType:'bars',
-        series:{2: {type: 'line'}}
-        width: 800,
-        height: 600
+        series:1
+        //width: 800,
+        //height: 600
         };
       // Instantiate and draw our chart, passing in some options.
       // Do not forget to check your div ID
