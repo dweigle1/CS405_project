@@ -58,7 +58,8 @@ if(isset($_SESSION["login_user"])){
         $sql = "SELECT MAX(OrderID) FROM Orders;";	
 		$result = mysqli_query($conn, $sql);
         $conn->close();
-        echo $result + 1;
+        $row = mysqli_fetch_assoc($result);
+        echo $row["OrderID"] + 1;
     }
 ?>
 
