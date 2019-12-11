@@ -50,5 +50,11 @@ if(isset($_POST["Search"])){
 
 
 
+<?php
+if(isset($_POST["addToCart"])){
+    echo $_POST["addToCart"];
+}
+?>
+
 
 <?php include "footer.php";?>
