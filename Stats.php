@@ -37,7 +37,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
 	
 }
 		if(isset($_POST["Month"])){
@@ -48,7 +48,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
 	
 }
 		if(isset($_POST["Year"])){
@@ -59,7 +59,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
 	
 } else {
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
@@ -69,7 +69,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Order by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
 		}
 		
 		$result = mysqli_query($conn, $sql);
@@ -114,6 +114,7 @@ $rows = array();
 while ($r = $qresult->fetch_assoc()) {
         $temp = array();
         $temp[] = array('v' => (string) $r['ProductName']);
+	echo $temp;
     // Values of each slice
     $temp[] = array('v' => (int) $r['Quantity']);
     $rows[] = array('c' => $temp);
