@@ -53,26 +53,14 @@ if(isset($_SESSION["login_user"])){
 </form>
 
 <?php
-$host = "158.69.195.142";
-$username = "test";
-$password = "password";
-$dbname = "TOYZ";
-
-$ip_server = $_SERVER['SERVER_ADDR']; 
-
-if($ip_server == "158.69.195.142")
-{
-	$username = "root";
-}
 
 if(isset($_POST["placeOrder"])){
-    echo $_POST["placeOrder"];
     $conn = new mysqli($host, $username, $password, $dbname);
     $sql = "SELECT MAX(OrderID) FROM Orders;";	
     $result = mysqli_query($conn, $sql);
     $conn->close();
     $row = mysqli_fetch_assoc($result);
-    echo $row["OrderID"];
+    echo $row["MAX(OrderID)"];
 }
 ?>
 
