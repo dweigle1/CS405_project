@@ -55,6 +55,7 @@ if(isset($_SESSION["login_user"])){
 <?php
     if(isset($_POST["placeOrder"])){
         echo $_POST["placeOrder"];
+        $conn = new mysqli($host, $username, $password, $dbname);
         $sql = "SELECT MAX(OrderID) FROM Orders;";	
 		$result = mysqli_query($conn, $sql);
         $conn->close();
