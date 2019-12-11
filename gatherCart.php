@@ -46,8 +46,6 @@ if(isset($_SESSION["login_user"])){
 }
 ?>
 
-<?php
-
 
 
 <?php include "footer.php"; ?>
