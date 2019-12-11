@@ -115,7 +115,7 @@ while ($r = $qresult->fetch_assoc()) {
         $temp = array();
         $temp[] = array('v' => (string) $r['ProdName']);
     // Values of each slice
-    $temp[] = array('v' => (int) $r['Quantity']);
+    $temp[] = array('v' => (int) $r['SUM(OrderProducts.Quantity)']);
     $rows2[] = array('c' => $temp);
 }
 
