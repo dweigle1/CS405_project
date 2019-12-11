@@ -37,6 +37,7 @@ if(isset($_POST["Search"])){
         echo "</tr>";
         $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
             echo "<td>". $row["ProdName"] ."</td>";
             echo "<td>". $row["Price"] ."</td>";
             echo "<td>". $row["Discount"] ."</td>";
