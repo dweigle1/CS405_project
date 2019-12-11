@@ -49,12 +49,16 @@ if(isset($_SESSION["login_user"])){
 
 <form method="post" class="form-inline">
     <input class="form-control mr-sm-2" type="text" placeholder="Enter the Address" aria-label="placeOrder" name="placeOrder">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit Order</button>
 </form>
 
 <?php
     if(isset($_POST["placeOrder"])){
         echo $_POST["placeOrder"];
+        $sql = "SELECT MAX(OrderID) FROM Orders;";	
+		$result = mysqli_query($conn, $sql);
+        $conn->close();
+        echo $result + 1;
     }
 ?>
 
