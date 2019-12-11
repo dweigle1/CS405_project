@@ -20,7 +20,7 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-        $sql = "SELECT Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
+        $sql = "SELECT Product.PID, Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
 		
 		$result = mysqli_query($conn, $sql);
         $conn->close();
@@ -38,11 +38,10 @@ if(isset($_POST["Search"])){
         $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            foreach ($row as $field => $value) { 
-                echo "<td>" . $value . "</td>";
-                array_push($a,$value);
-            }
-            echo "<td><form method='post'><input type='submit' value='$a[0]' name='addToCart'>Add to Cart</input></form></td>";
+            echo "<td>" . $row[1] . "</td>";
+            echo "<td>" . $row[2] . "</td>";
+            echo "<td>" . $row[3] . "</td>";
+            echo "<td><form method='post'><input type='submit' value='Add To Cart' name='addToCart - " .$row[0]. "'>Add to Cart</input></form></td>";
             echo "</tr>";
         }
         echo "</table>";		
@@ -54,7 +53,13 @@ if(isset($_POST["Search"])){
 
 <?php
 if(isset($_POST["addToCart"])){
-    echo $_POST["addToCart"];
+    foreach($_POST as $key => $value){
+    if (strstr($key, 'item'))
+    {
+        $x = str_replace('item','',$key);
+        inserttag($value, $x);
+    }
+}
 }
 ?>
 
