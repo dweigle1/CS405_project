@@ -47,7 +47,7 @@ else if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login']))
 			if($_SESSION["login_role"] == "Manager")
 			{
 				echo '<li class="nav-item"><a class="nav-link" href="./staff.php">Staff</a></li>';
-				echo '<li class="nav-item"><a class="nav-link" href="./ShipOrder.php">Ship Orders</a></li>';
+				echo '<li class="nav-item"><a class="nav-link" href="./StaffOrders.php">Ship Orders</a></li>';
 				echo '<li class="nav-item"><a class="nav-link" href="./promotions.php">Set Promotions</a></li>';
 				echo '<li class="nav-item"><a class="nav-link" href="./Stats.php">Sales Statistics</a></li>';
 			}
