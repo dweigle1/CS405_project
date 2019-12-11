@@ -63,7 +63,7 @@ if(isset($_POST["placeOrder"])){
     $orderID = $row["MAX(OrderID)"] + 1;
     $today = date("y/m/d");
     $conn = new mysqli($host, $username, $password, $dbname);
-    $sql = "INSERT INTO Orders ([OrderID], [status], [timeOrdered], [UserName], [Address]) VALUES (".$orderID.", 'Pending', ".$today.", ".$login.", ".$_POST["placeOrder"]")";
+    $sql = "INSERT INTO Orders ([OrderID], [status], [timeOrdered], [UserName], [Address]) VALUES (".$orderID.", 'Pending', ".$today.", ".$login.", ".$_POST["placeOrder"].")";
     mysqli_free_result($result); 
     if (mysqli_query($conn, $sql)) {
         echo "Successfully inserted product information!";
