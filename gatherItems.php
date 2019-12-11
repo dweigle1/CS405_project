@@ -52,7 +52,7 @@ if(isset($_POST["Search"])){
 
 <?php
 if(isset($_POST["addToCart"])){
-    print_r($_POST["addToCart"])
+    echo $_POST["addToCart"];
 }
 ?>
 
