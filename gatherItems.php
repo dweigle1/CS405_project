@@ -37,9 +37,8 @@ if(isset($_POST["Search"])){
         echo "</tr>";
         $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td>". $row[1] ."</td>";
-            echo "<td>$row[2]</td>";
+            echo "<td>". $row["ProdName"] ."</td>";
+            echo "<td>$row[Price]</td>";
             echo "<td>$row[3]</td>";
             echo "<td><form method='post'><input type='submit' value='Add To Cart' name='addToCart - " .$row[0]. "'>Add to Cart</input></form></td>";
             echo "</tr>";
@@ -49,16 +48,6 @@ if(isset($_POST["Search"])){
 }
 ?>
 
-
-
-<?php
-if(isset($_POST["addToCart"])){
-    foreach($_POST as $key => $value){
-    echo "$key";
-    echo "$value";
-}
-}
-?>
 
 
 <?php include "footer.php";?>
