@@ -50,6 +50,8 @@ if(isset($_SESSION["login_user"])){
     <input type="submit" value="order" name="submitOrder">
 </form>
 
+<?php
+
 
 
 <?php include "footer.php"; ?>
