@@ -46,10 +46,6 @@ if(isset($_SESSION["login_user"])){
 }
 ?>
 
-<form name="orderButton" method="post">
-    <input type="submit" value="order" name="submitOrder">
-</form>
-
 <?php
 
 
