@@ -54,11 +54,8 @@ if(isset($_POST["Search"])){
 <?php
 if(isset($_POST["addToCart"])){
     foreach($_POST as $key => $value){
-    if (strstr($key, 'item'))
-    {
-        $x = str_replace('item','',$key);
-        inserttag($value, $x);
-    }
+    echo "$key";
+    echo "$value";
 }
 }
 ?>
