@@ -42,7 +42,7 @@ if(isset($_POST["Search"])){
                 echo "<td>" . $value . "</td>";
                 array_push($a,$value);
             }
-            echo "<td><form method='post'><input type='submit' value='$a[0]' name='addToCart'></input></form></td>";
+            echo "<td><form method='post'><input type='submit' value='$a[0]' name='addToCart'>Add to Cart</input></form></td>";
             echo "</tr>";
         }
         echo "</table>";		
