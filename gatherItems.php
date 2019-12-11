@@ -55,27 +55,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         if (strpos($key, 'addToCart_-_') !== false)
         {
             $x = str_replace('addToCart_-_','',$key);
-            echo $x;
-        }
-    }
-}
+            $login = $_SESSION["login_user"];
+            $conn = new mysqli($host, $username, $password, $dbname);
+            if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+            } else{
 
-$login = $_SESSION["login_user"];
-$conn = new mysqli($host, $username, $password, $dbname);
-        if ($conn->connect_error) {
-               die("Connection failed: " . $conn->connect_error);
-	} else{
-		
-		$Search = $_POST["Search"];
-        $sql = "INSERT INTO ShopsFor (UserName, PID) VALUES ('".$login."', ".$x.")";
-        mysqli_free_result($result); 
-        if (mysqli_query($conn, $sql)) {
+            $Search = $_POST["Search"];
+            $sql = "INSERT INTO ShopsFor (UserName, PID) VALUES ('".$login."', ".$x.")";
+            mysqli_free_result($result); 
+            if (mysqli_query($conn, $sql)) {
                 echo "Successfully inserted product information!";
             } else {
                 echo "Error: " . $sql . "" . mysqli_error($conn);
             }
             $conn->close();
+            }
         }
+    }
+}
+
+
     
 ?>
 

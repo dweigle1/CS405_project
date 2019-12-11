@@ -52,6 +52,12 @@ if(isset($_SESSION["login_user"])){
 		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 	</form>
 
+<?php
+    if(isset($_SESSION["placOrder"])){
+        echo "hello ;)"
+    }
+?>
+
 
 
 <?php include "footer.php"; ?>
