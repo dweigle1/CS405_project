@@ -103,24 +103,23 @@ $conn = new mysqli($host, $username, $password, $dbname);
 
 $qresult = mysqli_query($conn, $sql2);
 
-$rows = array();
+$rows2 = array();
 $table = array();
 $table['cols'] = array(
         array('label' => 'ProductName', 'type' => 'string'),
         array('label' => 'Quantity', 'type' => 'number')
 );
 
-$rows = array();
+$rows2 = array();
 while ($r = $qresult->fetch_assoc()) {
         $temp = array();
         $temp[] = array('v' => (string) $r['ProductName']);
-	echo $temp[0];
     // Values of each slice
     $temp[] = array('v' => (int) $r['Quantity']);
-    $rows[] = array('c' => $temp);
+    $rows2[] = array('c' => $temp);
 }
 
-$table['rows'] = $rows;
+$table['rows'] = $rows2;
 $jsonTable = json_encode($table);
 ?>
 
