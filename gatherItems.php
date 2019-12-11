@@ -35,12 +35,14 @@ if(isset($_POST["Search"])){
         echo "<th> Add to Cart </th>";
 
         echo "</tr>";
+        $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
+                array_push($a,$value);
             }
-            echo "<td><form method='post'><input type='submit' value='$field' name='addToCart'></input></form></td>";
+            echo "<td><form method='post'><input type='submit' value='$a[0]' name='addToCart'></input></form></td>";
             echo "</tr>";
         }
         echo "</table>";		
@@ -52,7 +54,7 @@ if(isset($_POST["Search"])){
 
 <?php
 if(isset($_POST["addToCart"])){
-    echo $_POST["addToCart"][0];
+    echo $_POST["addToCart"];
 }
 ?>
 
