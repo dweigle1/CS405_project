@@ -31,44 +31,44 @@ $conn = new mysqli($host, $username, $password, $dbname);
 		$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day);";	
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day)) Group by Products.ProdName;";
 		
 		
 	    if(isset($_POST["Week"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day);";	
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day)) Group by Products.ProdName;";
 	
 }
 		if(isset($_POST["Month"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP;";
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day);";
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 MONTH) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day)) Group by Products.ProdName;";
 	
 }
 		if(isset($_POST["Year"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP;";
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day);";
 			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
  from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
  ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and DATE_SUB(CURRENT_TIMESTAMP(), INTERVAL -1 day)) Group by Products.ProdName;";
 	
 }
 		
