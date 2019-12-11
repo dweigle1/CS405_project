@@ -47,14 +47,14 @@ if(isset($_SESSION["login_user"])){
 
 ?>
 
-    <form method="post" class="form-inline">
-		<input class="form-control mr-sm-2" type="text" placeholder="Enter the Address" aria-label="placeOrder" name="placeOrder">
-		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	</form>
+<form method="post" class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="Enter the Address" aria-label="placeOrder" name="placeOrder">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 
 <?php
-    if(isset($_SESSION["placOrder"])){
-        echo "hello ;)"
+    if(isset($_SESSION["placeOrder"])){
+        echo "hello ;)";
     }
 ?>
 
