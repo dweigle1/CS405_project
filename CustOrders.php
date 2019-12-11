@@ -124,6 +124,7 @@ if (mysqli_num_rows($result) > 0) {
 	echo "<table border='1' style='width:50%' class='table'>";
         echo "<thead class='thead-dark'><tr>";
 	echo "<th>OrderID</th>";
+	echo "<th>Status</th>";
 	echo "<th>Date & Time</th>";
 	echo "<th>Address</th>";
 	echo "</tr>";
