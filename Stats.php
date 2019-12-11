@@ -98,7 +98,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
 
 		
 		
-		//////// 		////////		Below here lies the graph shit       ////////		////////			
+		//////// 		////////		Below here lies the graph stuff       ////////		////////			
 	
 
 $qresult = mysqli_query($conn, $sql2);
@@ -113,7 +113,7 @@ $table['cols'] = array(
 $rows2 = array();
 while ($r = $qresult->fetch_assoc()) {
         $temp = array();
-        $temp[] = array('v' => (string) $r['ProductName']);
+        $temp[] = array('v' => (string) $r['ProdName']);
     // Values of each slice
     $temp[] = array('v' => (int) $r['Quantity']);
     $rows2[] = array('c' => $temp);
