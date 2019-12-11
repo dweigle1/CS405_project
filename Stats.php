@@ -28,6 +28,15 @@ $conn = new mysqli($host, $username, $password, $dbname);
 	if ($conn->connect_error) {
                die("Connection failed: " . $conn->connect_error);
 	} else{
+		$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
+			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
+ from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
+ ON Orders.OrderID = OrderProducts.OrderID) 
+ ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
+		
 		
 	    if(isset($_POST["Week"])){
 			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
@@ -61,16 +70,7 @@ $conn = new mysqli($host, $username, $password, $dbname);
  ON Orders.OrderID = OrderProducts.OrderID) 
  ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 YEAR) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
 	
-} else {
-			$sql = "select Orders.OrderID, timeOrdered, Products.ProdName, OrderProducts.Quantity
- from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
- ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP;";	
-			$sql2 = "select Products.ProdName, SUM(OrderProducts.Quantity)
- from Products RIGHT JOIN (Orders LEFT JOIN OrderProducts 
- ON Orders.OrderID = OrderProducts.OrderID) 
- ON Products.PID = OrderProducts.PID where (timeOrdered between DATE_SUB(current_timestamp(), INTERVAL 1 WEEK) and CURRENT_TIMESTAMP) Group by Products.ProdName;";
-		}
+}
 		
 		$result = mysqli_query($conn, $sql);
 		
