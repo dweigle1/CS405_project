@@ -20,10 +20,10 @@ if(isset($_POST["Search"])){
 	} else{
 		
 		$Search = $_POST["Search"];
-		$query = "SELECT ProdName, Price FROM Products WHERE ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
+        $sql = "SELECT Products.ProdName, Products.Price, Promotions.Discount FROM Products Left Join Promotions ON Promotions.PID = Products.PID WHERE Products.ProdName LIKE '%".$Search."%' OR Keyword LIKE '%".$Search."%'";	
 		
-		$result = mysqli_query($conn, $query);
-          $conn->close();
+		$result = mysqli_query($conn, $sql);
+        $conn->close();
 
         echo "<br>";
         echo "<table border='1' style='width:100%'>";
@@ -31,20 +31,32 @@ if(isset($_POST["Search"])){
         
         echo "<th>Product Name</th>";
         echo "<th>Price</th>";
+        echo "<th>Discounted Price</th>";
         echo "<th> Add to Cart </th>";
 
         echo "</tr>";
+        $a=array();
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             foreach ($row as $field => $value) { 
                 echo "<td>" . $value . "</td>";
+                array_push($a,$value);
             }
-            echo "<td><button> Add to Cart </button></td>";
+            echo "<td><form method='post'><input type='submit' value='$a[0]' name='addToCart'>Add to Cart</input></form></td>";
             echo "</tr>";
         }
         echo "</table>";		
     }
 }
 ?>
+
+
+
+<?php
+if(isset($_POST["addToCart"])){
+    echo $_POST["addToCart"];
+}
+?>
+
 
 <?php include "footer.php";?>
