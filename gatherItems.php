@@ -40,7 +40,7 @@ if(isset($_POST["Search"])){
             echo "<td>". $row["ProdName"] ."</td>";
             echo "<td>". $row["Price"] ."</td>";
             echo "<td>". $row["Discount"] ."</td>";
-            echo "<td><form method='post'><input type='submit' value='Add To Cart' name='addToCart - " .$row[0]. "'>Add to Cart</input></form></td>";
+            echo "<td><form method='post'><input type='submit' value='Add To Cart' name='addToCart - " .$row["PID"]. "'></input></form></td>";
             echo "</tr>";
         }
         echo "</table>";		
@@ -48,6 +48,21 @@ if(isset($_POST["Search"])){
 }
 ?>
 
+<?php
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    foreach($_POST as $key => $value)
+    {
+        if (strstr($key, 'addToCart - '))
+        {
+            $x = str_replace('addToCart - ','',$key);
+            echo $x;
+        }
+    }
+}
 
+        
+}
+
+?>
 
 <?php include "footer.php";?>
