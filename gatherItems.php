@@ -53,10 +53,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     foreach($_POST as $key => $value)
     {
         echo $key;
-        echo $value;
-        if (strpos($key, 'addToCart - '))
+        if (strpos($key, 'addToCart_-_'))
         {
-            $x = str_replace('addToCart - ',' ',$key);
+            $x = str_replace('addToCart_-_','',$key);
             echo $x;
         }
     }
