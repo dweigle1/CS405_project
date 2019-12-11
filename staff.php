@@ -51,16 +51,13 @@
 					if ($conn->connect_error) {
 							   die("Connection failed: " . $conn->connect_error);
 					} else{
-						$sql = "INSERT INTO Products (PID, Quantity, Price, Category, ProdName, Keyword) 
-								VALUES ('".$_POST["pid"]."', '".$_POST["quantity"]."', '".$_POST["price"]."', '".$_POST["category"]."',
-										'".$_POST["pname"]."', '".$_POST["keyword"]."')";
+						$sql = "UPDATE Products SET Quantity = ". $_POST["quantity"] . " WHERE PID = " . $_POST["pid"];
 						mysqli_free_result($result); 
 						if (mysqli_query($conn, $sql)) {
-							   echo "Successfully inserted product information!";
+							   echo "Successfully updated product information!";
 							} else {
 							   echo "Error: " . $sql . "" . mysqli_error($conn);
 							}
-							$conn->close();
 						}
 				}
 
@@ -86,7 +83,7 @@
 					echo "</tr>";
 				}
 				echo "</table>";
-
+				$conn->close();
 
 				?>
 			</div>
@@ -116,7 +113,7 @@
 					
 					<input type="number" name="quantity" id="quantity" placeholder="quantity">
 
-					<input type="submit" name="add" value="Add" class="login-input">
+					<input type="submit" name="update" value="Update" class="login-input">
 				</form>
 			</div>
 		</div>
