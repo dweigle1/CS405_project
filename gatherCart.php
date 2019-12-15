@@ -75,9 +75,8 @@ if(isset($_POST["placeOrder"]))
 
 	while ($row = mysqli_fetch_row($result)) 
 	{
-		echo "!!";
 		$sql = "INSERT INTO OrderProducts (OrderID, Quantity, PID) VALUES ('" . $orderID ."', '" . $row[1] . "', '" . $row[0] . "');";
-		$result = mysqli_query($conn, $sql);
+		mysqli_query($conn, $sql);
 	}
 	mysqli_free_result($result);
 	
