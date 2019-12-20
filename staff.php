@@ -11,7 +11,7 @@
 			<?php
 			$host = "158.69.195.142";
 			$username = "test";
-			$password = "password";
+			$password = "X8g$4eX5MJ6A";
 			$dbname = "TOYZ";
 
 			$ip_server = $_SERVER['SERVER_ADDR']; 
